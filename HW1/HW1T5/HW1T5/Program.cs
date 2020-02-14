@@ -22,6 +22,7 @@ namespace HW1T5
                 }
             }
         }
+
         private static void DisplayMatrix(int[,] matrix)
         {
             for (int i = 0; i < matrix.GetLength(0); i++)
@@ -33,6 +34,7 @@ namespace HW1T5
                 Console.WriteLine();
             }
         }
+
         static void Main(string[] args)
         {
             int[,] matrix = new int[3, 5] { {3, 2, 1, 5, 4}, {4, 5, 6, 9, 0}, {3, 1, 9, 7, 4 } };
