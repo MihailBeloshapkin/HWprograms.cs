@@ -4,7 +4,7 @@ namespace HW1T2
 {
     class Program
     {
-        private static int recursiveCalculation(int value)
+        private static int RecursiveCalculation(int value)
         {
             if (value <= 1)
             {
@@ -12,7 +12,7 @@ namespace HW1T2
             }
             else
             {
-                return recursiveCalculation(value - 1) + recursiveCalculation(value - 2);
+                return RecursiveCalculation(value - 1) + RecursiveCalculation(value - 2);
             }
         }
         static void Main(string[] args)
@@ -21,7 +21,7 @@ namespace HW1T2
             var inputString = Console.ReadLine();
             int value = int.Parse(inputString);
             Console.WriteLine("Result of calculation is: ");
-            Console.WriteLine(recursiveCalculation(value));
+            Console.WriteLine(RecursiveCalculation(value));
         }
     }
 }
