@@ -32,7 +32,7 @@ namespace HW1T3
             {
                 while (countArray[index] > 0)
                 {
-                    array[indexOfOutputArray] = index + 1;
+                    array[indexOfOutputArray] = index + minNumber;
                     indexOfOutputArray++;
                     countArray[index]--;
                 }
