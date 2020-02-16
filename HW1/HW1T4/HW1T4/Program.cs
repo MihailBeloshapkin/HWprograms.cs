@@ -34,12 +34,12 @@ namespace HW1T4
                 }
                 step++;
             }
+
             for (int i = 0; i < step; i++)
             {
                 Console.WriteLine(matrix[index1, index2]);
                 index1--;
             }
-
         }
 
         static void Main(string[] args)
