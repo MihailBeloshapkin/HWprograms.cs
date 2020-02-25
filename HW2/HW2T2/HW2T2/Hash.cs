@@ -25,7 +25,7 @@ namespace HW2T2
             }
         }
 
-        private int hashFunction(string value)
+        private int HashFunction(string value)
         {
             int result = 0;
             for (int i = 0; i < value.Length; i++)
@@ -50,7 +50,7 @@ namespace HW2T2
                 for (int iter = 0; iter < array[index].size(); iter++)
                 {
                     string data = array[index].GetDataByPosition(iter);
-                    newArray[hashFunction(data)].Addition(data);
+                    newArray[HashFunction(data)].Addition(data);
                 }
             }
 
@@ -65,7 +65,7 @@ namespace HW2T2
             {
                 Expansion();
             }
-            array[hashFunction(newData)].Addition(newData);
+            array[HashFunction(newData)].Addition(newData);
             fillCoef = CalculateFillCoeff();
         }
 
