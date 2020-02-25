@@ -12,6 +12,11 @@ namespace HW2T2
 
         public Hash(int size)
         {
+            if (size < 0)
+            {
+                return;
+            }
+
             hashTableSize = size;
             array = new List [hashTableSize];
             for (int iter = 0; iter < hashTableSize; iter++)
