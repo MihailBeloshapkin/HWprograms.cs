@@ -90,8 +90,6 @@ namespace HW2T1
                             break;
                         }
                 }
-
-
             }
         }
     }
