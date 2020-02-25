@@ -18,6 +18,7 @@ namespace HW2T1
                 Console.WriteLine("4 - set data by position");
                 Console.WriteLine("5 - get size");
                 Console.WriteLine("6 - check that empty");
+                Console.WriteLine("7 - display");
 
                 var inputString = Console.ReadLine();
                 int choice = int.Parse(inputString);
@@ -56,6 +57,7 @@ namespace HW2T1
                         }
                     case 4:
                         {
+                            Console.WriteLine("Input data:");
                             var input1 = Console.ReadLine();
                             int newData = int.Parse(input1);
                             Console.WriteLine("Input position:");
@@ -79,6 +81,12 @@ namespace HW2T1
                             {
                                 Console.WriteLine("Is not empty");
                             }
+                            break;
+                        }
+                    case 7:
+                        {
+                            list.DisplayList();
+                            Console.WriteLine();
                             break;
                         }
                 }

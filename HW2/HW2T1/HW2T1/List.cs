@@ -20,14 +20,14 @@ namespace HW2T1
         private ListElement head;
 
         private int sizeOfList;
-        
-        public void Display()
+
+        public void DisplayList()
         {
-            ListElement currentList = head;
+            var currentElement = head;
             for (int iter = 0; iter < sizeOfList; iter++)
             {
-                Console.WriteLine(currentList.data);
-                currentList = currentList.next;
+                Console.Write($"{currentElement.data} ");
+                currentElement = currentElement.next;
             }
         }
 
@@ -98,6 +98,7 @@ namespace HW2T1
             if (position < 0 || position > sizeOfList - 1)
             {
                 Console.WriteLine("Incorrect position value");
+                return -1;
             }
 
             var currentElement = head;
