@@ -11,7 +11,7 @@ namespace HW2T2
             table.AddToHashTable("stack");
             table.AddToHashTable("tree");
             table.AddToHashTable("exception");
-            table.AddToHashTable("JavaScript");
+            table.AddToHashTable("graph");
             table.AddToHashTable("Pointer");
             table.AddToHashTable("Error");
             table.AddToHashTable("Warning");
