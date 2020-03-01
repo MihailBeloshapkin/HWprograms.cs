@@ -58,7 +58,7 @@ namespace HW2T3
 
                     if (expression[index] == '-')
                     {
-                        stack.Push(firstNum - secondNum);
+                        stack.Push(secondNum - firstNum);
                     }
 
                     if (expression[index] == '*')
@@ -68,7 +68,7 @@ namespace HW2T3
 
                     if (expression[index] == '/')
                     {
-                        stack.Push(firstNum / secondNum);
+                        stack.Push(secondNum / firstNum);
                     }
                     index++;
                 }
