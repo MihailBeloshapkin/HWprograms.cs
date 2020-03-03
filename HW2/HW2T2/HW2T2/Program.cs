@@ -16,7 +16,13 @@ namespace HW2T2
             table.AddToHashTable("Error");
             table.AddToHashTable("Warning");
             table.AddToHashTable("Variable");
-            table.DisplayHashTable();            
+            table.DisplayHashTable();
+            table.DeleteDataFromHashTable("exception");
+            table.DeleteDataFromHashTable("Warning");
+            Console.WriteLine();
+            table.DisplayHashTable();
+            table.CheckInclusionInHash("Error");
+            table.CheckInclusionInHash("abc");
         }
     }
 }

@@ -25,12 +25,12 @@ namespace HW2T2
             }
         }
 
-        private int HashFunction(string value)
+        private int HashFunction(string value, int size)
         {
             int result = 0;
             for (int i = 0; i < value.Length; i++)
             {
-                result = (result + value[i]) % hashTableSize;
+                result = (result + value[i]) % size;
             }
             return result;
         }
@@ -50,7 +50,7 @@ namespace HW2T2
                 for (int iter = 0; iter < array[index].size(); iter++)
                 {
                     string data = array[index].GetDataByPosition(iter);
-                    newArray[HashFunction(data)].Addition(data);
+                    newArray[HashFunction(data, newHashTableSize)].Addition(data);
                 }
             }
 
@@ -65,8 +65,18 @@ namespace HW2T2
             {
                 Expansion();
             }
-            array[HashFunction(newData)].Addition(newData);
+            array[HashFunction(newData, hashTableSize)].Addition(newData);
             fillCoef = CalculateFillCoeff();
+        }
+
+        public void DeleteDataFromHashTable(string deleteData)
+        {
+            array[HashFunction(deleteData, hashTableSize)].DeleteElement(deleteData);
+        }
+
+        public bool CheckInclusionInHash(string data)
+        {
+            return array[HashFunction(data, hashTableSize)].CheckInclusionInList(data);
         }
 
         public void DisplayHashTable()

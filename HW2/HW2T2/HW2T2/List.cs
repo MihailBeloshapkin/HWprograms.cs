@@ -26,6 +26,32 @@ namespace HW2T2
             sizeOfList++;
         }
 
+        public void DeleteElement(string deleteData)
+        {
+            if (sizeOfList == 0)
+            {
+                return;
+            }
+
+            var currentElement = head;
+            int iter = 0;
+
+            if (deleteData == currentElement.data)
+            {
+                head = head.next;
+                sizeOfList--;
+                return;
+            }
+
+            while (iter < sizeOfList && deleteData != currentElement.next.data)
+            {
+                currentElement = currentElement.next;
+            }
+            currentElement.next = currentElement.next.next;
+            sizeOfList--;
+
+        }
+
         public void DisplayList()
         {
             var currentElement = head;
@@ -50,6 +76,19 @@ namespace HW2T2
             }
 
             return currentElement.data;
+        }
+
+        public bool CheckInclusionInList(string data)
+        {
+            var currentElement = head;
+            for (int iter = 0; iter < sizeOfList; iter++)
+            {
+                if (data == currentElement.data)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
