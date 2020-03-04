@@ -19,6 +19,7 @@ namespace HW2T2
             table.DisplayHashTable();
             table.DeleteDataFromHashTable("exception");
             table.DeleteDataFromHashTable("Warning");
+            table.DeleteDataFromHashTable("stack");
             Console.WriteLine();
             table.DisplayHashTable();
             table.CheckInclusionInHash("Error");
