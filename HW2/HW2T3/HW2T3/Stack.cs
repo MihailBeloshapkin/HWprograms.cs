@@ -20,9 +20,9 @@ namespace HW2T3
             
         }
 
-        StackElement head;
+        private StackElement head;
 
-        int sizeOfStack = 0;
+        private int sizeOfStack = 0;
 
         public void Push(int newData)
         {
@@ -30,8 +30,14 @@ namespace HW2T3
             sizeOfStack++;
         }
 
-        public int Pop()
+        public int Pop(ref bool isCorrect)
         {
+            if (sizeOfStack == 0)
+            {
+                isCorrect = false;
+                return -1;
+            }
+
             int deletedData = head.data;
             head = head.next;
             sizeOfStack--;

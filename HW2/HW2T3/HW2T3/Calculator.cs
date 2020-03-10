@@ -4,9 +4,14 @@ using System.Text;
 
 namespace HW2T3
 {
-    class evaluator
+    class Calculator
     {
-        static private IStack stack;
+        public IStack stack;
+
+        public Calculator(IStack stack)
+        {
+            this.stack = stack;
+        }
 
         static private int TranslateToInteger(string input, ref int index)
         {
@@ -26,30 +31,18 @@ namespace HW2T3
             return symbol == '+' || symbol == '-' || symbol == '*' || symbol == '/';
         }
 
-        static public int Evaluator(string expression, int stackVariant, ref bool isCorrect)
+        public int Evaluate(string expression, ref bool isCorrect)
         {
-            
-            if (stackVariant == 0)
-            {
-                stack = new StackList();
-            }
-            if (stackVariant == 1)
-            {
-                stack = new StackArray();
-            }
-            
             for (int index = 0; index < expression.Length; index++)
             {                
                 if (IsOperation(expression[index]))
                 {
-                    if (stack.Size() < 2)
+                    int firstNum = stack.Pop(ref isCorrect);
+                    int secondNum = stack.Pop(ref isCorrect);
+                    if (!isCorrect)
                     {
-                        isCorrect = false;
                         return -1;
                     }
-
-                    int firstNum = stack.Pop();
-                    int secondNum = stack.Pop();
 
                     if (expression[index] == '+')
                     {
@@ -85,7 +78,7 @@ namespace HW2T3
                 return -1;
             }
 
-            return stack.Pop();
+            return stack.Pop(ref isCorrect);
         }
     }
 }

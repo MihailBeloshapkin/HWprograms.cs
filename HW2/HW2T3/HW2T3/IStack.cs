@@ -10,7 +10,7 @@ namespace HW2T3
 
         void Push(int newData);
 
-        int Pop();
+        int Pop(ref bool isCorrect);
 
         int Size();
     }

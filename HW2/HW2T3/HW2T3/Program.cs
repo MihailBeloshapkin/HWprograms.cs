@@ -6,10 +6,26 @@ namespace HW2T3
     {
         static void Main(string[] args)
         {
-            bool isCorrect = true;
-            int answer1 = evaluator.Evaluator("2 7 + 3 / 8 *", 0, ref isCorrect);
-            int answer2 = evaluator.Evaluator("2 7 + 3 / 8 *", 1, ref isCorrect);
+            int stackVariant = 1;
 
+            IStack stack;
+            
+            if (stackVariant == 0)
+            {
+                stack = new StackList();
+            }
+            else if (stackVariant == 1)
+            {
+                stack = new StackArray();
+            }
+            else
+            {
+                return;
+            }
+
+            bool isCorrect = true;
+            Calculator calculator = new Calculator(stack);
+            Console.WriteLine(calculator.Evaluate("2 7 + 3 / 8 *", ref isCorrect));
         }
     }
 }
