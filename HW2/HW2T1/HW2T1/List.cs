@@ -6,7 +6,7 @@ namespace HW2T1
 {
     class List
     {
-        class ListElement
+        private class ListElement
         {
             public ListElement(int newData, ListElement listElement)
             {
@@ -32,15 +32,11 @@ namespace HW2T1
         }
 
         public int GetSize()
-        {
-            return sizeOfList;
-        }
+            => sizeOfList;
 
-        public bool isEmpty()
-        {
-            return head == null;
-        }
-
+        public bool IsEmpty()
+            => head == null;
+        
         public void AddToListPosition(int position, int newData)
         {
             if (position == 0)

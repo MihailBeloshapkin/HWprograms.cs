@@ -73,7 +73,7 @@ namespace HW2T1
                         }
                     case 6:
                         {
-                            if (list.isEmpty())
+                            if (list.IsEmpty())
                             {
                                 Console.WriteLine("Is empty");
                             }
