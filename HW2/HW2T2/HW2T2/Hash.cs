@@ -47,7 +47,7 @@ namespace HW2T2
 
             for (int index = 0; index < hashTableSize; index++)
             {
-                for (int iter = 0; iter < array[index].size(); iter++)
+                for (int iter = 0; iter < array[index].Size(); iter++)
                 {
                     string data = array[index].GetDataByPosition(iter);
                     newArray[HashFunction(data, newHashTableSize)].Addition(data);
@@ -95,7 +95,7 @@ namespace HW2T2
 
             for (int iter = 0; iter < hashTableSize; iter++)
             {
-                numberOfElements += array[iter].size();
+                numberOfElements += array[iter].Size();
             }
             return (float)numberOfElements / hashTableSize;
         }

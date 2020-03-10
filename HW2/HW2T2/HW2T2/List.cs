@@ -62,7 +62,7 @@ namespace HW2T2
             }
         }
 
-        public int size()
+        public int Size()
         {
             return sizeOfList;
         }
