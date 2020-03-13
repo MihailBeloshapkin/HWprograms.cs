@@ -76,7 +76,7 @@ namespace HW3T1
         }
 
         [Test]
-        public void Zero()
+        public void ZeroDivisionTest()
         {
             Calculation.Evaluator("9 0 /", 0, ref isCorrect);
             Assert.IsFalse(isCorrect);

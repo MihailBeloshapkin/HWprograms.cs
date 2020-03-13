@@ -81,7 +81,7 @@ namespace HW3T1
                         if (firstNum == 0)
                         {
                             isCorrect = false;
-                            throw new ArgumentNullException("Something is wrong");
+                            return -1;
                         }
                         stack.Push(secondNum / firstNum);
                     }
