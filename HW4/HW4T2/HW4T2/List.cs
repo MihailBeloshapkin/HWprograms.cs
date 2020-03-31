@@ -8,7 +8,7 @@ namespace HW4T2
     public class List
     {
         protected ListElement head;
-        protected int sizeOfList;
+        protected int sizeOfList = 0;
 
         protected class ListElement
         {
@@ -72,37 +72,31 @@ namespace HW4T2
         /// Delete data from list front.
         /// </summary>
         /// <returns>Deleted element</returns>
-        public virtual int DeleteFromListFront()
+        public virtual void DeleteFromListFront()
         {
             if (this.sizeOfList < 1)
             {
-                throw new Exception();
+                throw new DeleteFromEmptyListException();
             }
-            int deleteData = this.head.data;
             this.head = this.head.next;
             this.sizeOfList--;
-            return deleteData;
         }
 
         /// <summary>
         /// Delete from list back.
         /// </summary>
         /// <returns>Deleted element in case if it was possible to delete</returns>
-        public virtual int DeleteFromListBack()
+        public virtual void DeleteFromListBack()
         {
             if (sizeOfList < 1)
             {
                 throw new DeleteFromEmptyListException();
             }
 
-            int deletedData = 0;
-
             if (sizeOfList == 1)
             {
-                deletedData = head.data;
                 head = null;
                 sizeOfList--;
-                return deletedData;
             }
             var current = head;
 
@@ -111,10 +105,8 @@ namespace HW4T2
                 current = current.next;
             }
 
-            deletedData = current.next.data;
             current.next = null;
             sizeOfList--;
-            return deletedData;
         }
 
         /// <summary>
@@ -137,5 +129,12 @@ namespace HW4T2
 
             return false;
         }
+
+        /// <summary>
+        /// Size of list.
+        /// </summary>
+        /// <returns>Size of list</returns>
+        public int Size()
+            => sizeOfList;
     }
 }
