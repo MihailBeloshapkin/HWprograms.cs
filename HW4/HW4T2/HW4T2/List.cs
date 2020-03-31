@@ -84,13 +84,37 @@ namespace HW4T2
             return deleteData;
         }
 
+        /// <summary>
+        /// Delete from list back.
+        /// </summary>
+        /// <returns>Deleted element in case if it was possible to delete</returns>
         public virtual int DeleteFromListBack()
         {
-            if (sizeOfList == 0)
+            if (sizeOfList < 1)
             {
-                throw new Exception();
+                throw new DeleteFromEmptyListException();
             }
-            return 1;
+
+            int deletedData = 0;
+
+            if (sizeOfList == 1)
+            {
+                deletedData = head.data;
+                head = null;
+                sizeOfList--;
+                return deletedData;
+            }
+            var current = head;
+
+            for (int iter = 0; iter < sizeOfList - 2; iter++)
+            {
+                current = current.next;
+            }
+
+            deletedData = current.next.data;
+            current.next = null;
+            sizeOfList--;
+            return deletedData;
         }
 
         /// <summary>

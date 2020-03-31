@@ -15,7 +15,7 @@ namespace HW4T2
         [Test]
         public void AdditionTest()
         {
-            Assert.Pass();
+            
         }
     }
 }
