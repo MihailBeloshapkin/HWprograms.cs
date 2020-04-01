@@ -22,6 +22,9 @@ namespace HW4T2
             }
         }
 
+        /// <summary>
+        /// Display add data from list to a console.
+        /// </summary>
         public void Display()
         {
             var current = this.head;

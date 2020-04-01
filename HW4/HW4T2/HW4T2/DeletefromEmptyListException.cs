@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HW4T2
 {
-    class DeleteFromEmptyListException : Exception
+    public class DeleteFromEmptyListException : Exception
     {
         public DeleteFromEmptyListException() { }
         public DeleteFromEmptyListException(string message) : base(message) { }

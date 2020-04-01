@@ -5,7 +5,7 @@ using System.Text;
 namespace HW4T2
 {
     /// <summary>
-    /// In case if we delete anything from empty list.
+    /// In case if we add data that is alreade contained in list.
     /// </summary>
     public class AddDataThatIsAlreadyInTheListException : Exception
     {

@@ -85,10 +85,10 @@ namespace HW4T2
             }
         }
 
-    }
-
-    [Test]
-    public void DeleteFromEmptyList()
-    {
+        [Test]
+        public void DeleteFromEmptyList()
+        {
+            Assert.Throws<DeleteFromEmptyListException>(() => testList.DeleteFromListFront());
+        }
     }
 }
