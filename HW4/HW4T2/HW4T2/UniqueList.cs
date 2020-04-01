@@ -41,7 +41,7 @@ namespace HW4T2
         {
             if (base.Size() < 1)
             {
-                throw new DeleteFromEmptyListException("Impossible to delete data from empty list.");
+                throw new DeleteFromEmptyListException("Impossible to delete data from the empty list.");
             }
 
             base.DeleteFromListFront();
@@ -54,7 +54,7 @@ namespace HW4T2
         {
             if (base.Size() < 1)
             {
-                throw new DeleteFromEmptyListException("Impossible to delete data from empty list.");
+                throw new DeleteFromEmptyListException("Impossible to delete data from the empty list.");
             }
 
             base.DeleteFromListBack();
