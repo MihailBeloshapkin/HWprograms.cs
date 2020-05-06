@@ -4,3 +4,7 @@ before_build:
 
 build_script:
   - dotnet build HW6\HW6T1\HW6T1.sln
+
+test_script:
+  - dotnet test HW6\HW6T1\HW6T1.sln
+
