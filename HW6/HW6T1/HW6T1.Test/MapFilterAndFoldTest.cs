@@ -55,5 +55,13 @@ namespace HW6T1
                 Assert.AreEqual(testList[iter], rightAnswerList[iter]);
             }
         }
+
+        [Test]
+        public void FoldTest()
+        {
+            int current = 30;
+            current = MapFilterAndFold.Fold(testList, current, (x, y) => x + y);
+            Assert.AreEqual(current, 62);
+        }
     }
 }
