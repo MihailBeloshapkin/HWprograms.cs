@@ -48,6 +48,13 @@ namespace HW6T1
             return newList;
         }
 
+        /// <summary>
+        /// Get list, current value and function and apply function for each element and current. 
+        /// </summary>
+        /// <param name="list">Input list</param>
+        /// <param name="current">Current value that we are going to change</param>
+        /// <param name="function">Input function</param>
+        /// <returns>Current value after applying the function</returns>
         public static int Fold(List<int> list, int current, Func<int, int, int> function)
         {
             foreach (int element in list)

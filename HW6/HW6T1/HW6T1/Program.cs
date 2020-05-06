@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace HW6T1
 {
@@ -6,12 +8,8 @@ namespace HW6T1
     {
         static void Main(string[] args)
         {
-            List list = new List();
-            list.Add(1);
-            list.Add(2);
-            list.Display();
-            list.Delete();
-            list.Display();
+            var newList = new List<int>() {1, 2, 3, 4};
+            newList = MapFilterAndFold.Map(newList, x => x + 30);
         }
     }
 }
