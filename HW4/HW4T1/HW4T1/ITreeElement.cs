@@ -4,9 +4,9 @@ using System.Text;
 
 namespace HW4T1
 {
-    interface ITreeElement
+    public interface ITreeElement
     {
-        public void Print();
+        public void Display();
 
         public int Calculate();
     }
