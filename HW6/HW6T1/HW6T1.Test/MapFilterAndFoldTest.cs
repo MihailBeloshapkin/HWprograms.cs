@@ -10,14 +10,13 @@ namespace HW6T1
     /// </summary>
     public class Tests
     {
-        List<int> testList = null;
-        List<int> rightAnswerList = null;
+        private List<int> testList = null;
+        private List<int> rightAnswerList = null;
 
         [SetUp]
         public void Setup()
         {
             testList = new List<int>() { 4, 2, 1, 8, -5, 7, 15 };
-            rightAnswerList = null;
         }
 
         [Test]
@@ -25,11 +24,8 @@ namespace HW6T1
         {
             testList = MapFilterAndFold.Map(testList, x => x + 30);
             rightAnswerList = new List<int>() { 34, 32, 31, 38, 25, 37, 45 };
-            
-            for (int iter = 0; iter < testList.Count; iter++)
-            {
-                Assert.AreEqual(testList[iter], rightAnswerList[iter]);
-            }
+
+            Assert.AreEqual(rightAnswerList, testList);
         }
 
         [Test]
@@ -38,10 +34,7 @@ namespace HW6T1
             testList = MapFilterAndFold.Map(testList, x => x * 3);
             rightAnswerList = new List<int>() { 12, 6, 3, 24, -15, 21, 45 };
 
-            for (int iter = 0; iter < testList.Count; iter++)
-            {
-                Assert.AreEqual(testList[iter], rightAnswerList[iter]);
-            }
+            Assert.AreEqual(rightAnswerList, testList);
         }
 
         [Test]
@@ -50,17 +43,13 @@ namespace HW6T1
             testList = MapFilterAndFold.Filter(testList, x => x % 2 == 0);
             rightAnswerList = new List<int>() { 4, 2, 8 };
 
-            for (int iter = 0; iter < rightAnswerList.Count; iter++)
-            {
-                Assert.AreEqual(testList[iter], rightAnswerList[iter]);
-            }
+            Assert.AreEqual(rightAnswerList, testList);
         }
 
         [Test]
         public void FoldTest()
         {
-            int current = 30;
-            current = MapFilterAndFold.Fold(testList, current, (x, y) => x + y);
+            int current = MapFilterAndFold.Fold(testList, 30, (x, y) => x + y);
             Assert.AreEqual(current, 62);
         }
     }
