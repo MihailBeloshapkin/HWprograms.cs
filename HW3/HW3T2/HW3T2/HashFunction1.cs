@@ -15,12 +15,12 @@ namespace HW3T2
         /// <param name="value">Input data that we would like to add</param>
         /// <param name="sizeOfHash">Current hash table size</param>
         /// <returns>Index into array of lists</returns>
-        public int HashFunction(string value, int sizeOfHash)
+        public int HashFunction(string value)
         {
             int result = 0;
             for (int i = 0; i < value.Length; i++)
             {
-                result = (result + value[i]) % sizeOfHash;
+                result = (result + value[i]);
             }
 
             return result;

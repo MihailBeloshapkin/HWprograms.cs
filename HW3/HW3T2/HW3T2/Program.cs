@@ -6,7 +6,8 @@ namespace HW3T2
     {
         static void Main(string[] args)
         {
-            Hash table = new Hash(2, 0);
+            IHashFunction HashFunction1 = new HashFunction1();
+            HashTable table = new HashTable(HashFunction1);
             table.AddToHashTable("java");
             table.AddToHashTable("stack");
             table.AddToHashTable("tree");
@@ -17,11 +18,14 @@ namespace HW3T2
             table.AddToHashTable("Warning");
             table.AddToHashTable("Variable");
             table.DisplayHashTable();
-            table.DeleteDataFromHashTable("exception");
-            table.DeleteDataFromHashTable("Warning");
             Console.WriteLine();
-        
-            Hash table1 = new Hash(2, 1);
+            table.DeleteDataFromHashTable("exception");
+            table.DeleteDataFromHashTable("stack");
+            table.DisplayHashTable();
+            Console.WriteLine();
+
+            IHashFunction HashFunction2 = new HashFunction2();
+            HashTable table1 = new HashTable(HashFunction2);
             table1.AddToHashTable("java");
             table1.AddToHashTable("stack");
             table1.AddToHashTable("tree");

@@ -8,11 +8,12 @@ namespace HW3T2
     /// </summary>
     public class HashTest
     {
-        Hash table;
+        private HashTable table;
+
         [SetUp]
         public void Setup()
         {
-            table = new Hash(2, 0);
+            table = new HashTable(new HashFunction1());
         }
 
         [Test]

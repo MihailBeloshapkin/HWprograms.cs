@@ -4,44 +4,40 @@ using System.Text;
 
 namespace HW3T2
 {
-    public class Hash
+    public class HashTable
     {
-        static private int hashTableSize;
         private List[] array;
-        static private float fillCoefficent;
-        static private IHashFunction HashFunction;
+        private float fillCoefficent;
+        private IHashFunction HashFunction;
 
         /// <summary>
         /// Create hash table
         /// </summary>
         /// <param name="size">Size of table we would like to create</param>
-        /// <param name="hashFunctionChoice">Choice of user</param>
-        public Hash(int size, int hashFunctionChoice)
+        public HashTable(IHashFunction HashFunction)
         {
-            if (size < 0)
-            {
-                return;
-            }
-
-            hashTableSize = size;
-            array = new List[hashTableSize];
-            for (int iter = 0; iter < hashTableSize; iter++)
+            this.HashFunction = HashFunction;
+            array = new List[5];
+            for (int iter = 0; iter < 5; iter++)
             {
                 array[iter] = new List();
             }
 
-            if (hashFunctionChoice == 0)
+        }
+
+        /// <summary>
+        /// Transform hash function returned index to the right range.
+        /// </summary>
+        /// <param name="hashFunctionIndex">Input index</param>
+        /// <returns>Correct index</returns>
+        private int TransformToTheRange(int hashFunctionIndex, int currentSize)
+        {
+            if (hashFunctionIndex < 0 || hashFunctionIndex >= currentSize)
             {
-                HashFunction = new HashFunction1();
+                hashFunctionIndex = Math.Abs(hashFunctionIndex) % currentSize;
             }
-            else if (hashFunctionChoice == 1)
-            {
-                HashFunction = new HashFunction2();
-            }
-            else
-            {
-                Console.WriteLine("Incorrect choice");
-            }
+
+            return hashFunctionIndex;
         }
 
         /// <summary>
@@ -49,7 +45,7 @@ namespace HW3T2
         /// </summary>
         private void Expansion()
         {
-            int newHashTableSize = hashTableSize * 2;
+            int newHashTableSize = array.Length * 2;
             List[] newArray = new List[newHashTableSize];
 
             for (int iter = 0; iter < newHashTableSize; iter++)
@@ -57,20 +53,20 @@ namespace HW3T2
                 newArray[iter] = new List();
             }
 
-            for (int index = 0; index < hashTableSize; index++)
+            for (int index = 0; index < array.Length; index++)
             {
                 for (int iter = 0; iter < array[index].Size(); iter++)
                 {
                     string data = array[index].GetDataByPosition(iter);
-                    newArray[HashFunction.HashFunction(data, newHashTableSize)].Addition(data);
+                    int hashIndex = TransformToTheRange(HashFunction.HashFunction(data), newHashTableSize);
+                    newArray[hashIndex].Addition(data);
                 }
             }
 
-            hashTableSize = newHashTableSize;
             array = newArray;
-            fillCoefficent = 0;
+            fillCoefficent = CalculateFillCoefficent();
         }
-        
+
         /// <summary>
         /// Add string data into hash table.
         /// </summary>
@@ -81,7 +77,9 @@ namespace HW3T2
             {
                 Expansion();
             }
-            array[HashFunction.HashFunction(newData, hashTableSize)].Addition(newData);
+
+            int hashIndex = TransformToTheRange(HashFunction.HashFunction(newData), array.Length);
+            array[hashIndex].Addition(newData);
             fillCoefficent = CalculateFillCoefficent();
         }
 
@@ -91,7 +89,8 @@ namespace HW3T2
         /// <param name="deleteData">Data that we would like to delete from hash table</param>
         public bool DeleteDataFromHashTable(string deleteData)
         {
-            array[HashFunction.HashFunction(deleteData, hashTableSize)].DeleteElement(deleteData);
+            int hashIndex = TransformToTheRange(HashFunction.HashFunction(deleteData), array.Length);
+            array[hashIndex].DeleteElement(deleteData);
             return Contains(deleteData);
         }
 
@@ -102,7 +101,8 @@ namespace HW3T2
         /// <returns></returns>
         public bool Contains(string data)
         {
-            return array[HashFunction.HashFunction(data, hashTableSize)].Contains(data);
+            int hashIndex = TransformToTheRange(HashFunction.HashFunction(data), array.Length);
+            return array[hashIndex].Contains(data);
         }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace HW3T2
         /// </summary>
         public void DisplayHashTable()
         {
-            for (int iter = 0; iter < hashTableSize; iter++)
+            for (int iter = 0; iter < array.Length; iter++)
             {
                 Console.Write($"{iter} :");
                 array[iter].DisplayList();
@@ -126,13 +126,12 @@ namespace HW3T2
         {
             int numberOfElements = 0;
 
-            for (int iter = 0; iter < hashTableSize; iter++)
+            for (int iter = 0; iter < array.Length; iter++)
             {
                 numberOfElements += this.array[iter].Size();
             }
 
-            return (float)numberOfElements / hashTableSize;
+            return (float)numberOfElements / array.Length;
         }
     }
 }
-

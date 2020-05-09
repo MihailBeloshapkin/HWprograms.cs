@@ -12,7 +12,7 @@ namespace HW3T2
         /// <summary>
         /// List element
         /// </summary>
-        class ListElement
+        private class ListElement
         {
             /// <summary>
             /// Create new list element.
@@ -24,6 +24,7 @@ namespace HW3T2
                 this.data = newData;
                 this.next = listElement;
             }
+
             public string data;
             public ListElement next;
         }
@@ -89,9 +90,7 @@ namespace HW3T2
         /// </summary>
         /// <returns>Size of list</returns>
         public int Size()
-        {
-            return sizeOfList;
-        }
+            => sizeOfList;
 
         /// <summary>
         /// Search input data in list by position.

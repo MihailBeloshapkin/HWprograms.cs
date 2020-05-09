@@ -13,11 +13,10 @@ namespace HW3T2
         /// This function returns index in array depending on input data and size of array
         /// </summary>
         /// <param name="value">Input data that we would like to add</param>
-        /// <param name="sizeOfHash">Current hash table size</param>
         /// <returns>Index into array of lists</returns>
-        public int HashFunction(string value, int sizeOfHash)
+        public int HashFunction(string value)
         {
-            return value[0] % sizeOfHash;
+            return value[0];
         }
     }
 }
