@@ -17,7 +17,7 @@ namespace HW3T2
             /// <summary>
             /// Create new list element.
             /// </summary>
-            /// <param name="newData">New data that we woulf blike to add</param>
+            /// <param name="newData">New data that we would like to add</param>
             /// <param name="listElement"></param>
             public ListElement(string newData, ListElement listElement)
             {

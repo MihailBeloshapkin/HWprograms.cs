@@ -7,7 +7,8 @@ namespace HW3T2
     /// </summary>
     class ListTest
     {
-        List list;
+        private List list;
+
         [SetUp]
         public void Setup()
         {
@@ -54,7 +55,7 @@ namespace HW3T2
                 list.Addition("word");
             }
             Assert.IsTrue(list.Contains("word"));
-            Assert.AreEqual(list.Size(), 1000);
+            Assert.AreEqual(1000, list.Size());
         }
     }
 }
