@@ -44,7 +44,7 @@ namespace HW3T2
         }
 
         /// <summary>
-        /// Expansion os hash table in case of big count of input data.
+        /// Expansion of hash table in case of big count of input data.
         /// </summary>
         private void Expand()
         {
