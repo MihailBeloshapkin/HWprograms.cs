@@ -1,10 +1,12 @@
 using NUnit.Framework;
+using System;
+using System.IO;
 
 namespace HW6T2
 {
     public class MapTest
     {
-        Game testGame;
+        private Game testGame;
 
         [SetUp]
         public void Setup()
@@ -15,6 +17,12 @@ namespace HW6T2
         public void IncorrectGameMapTest()
         {
             Assert.Throws<NoSpaceException>(() => testGame = new Game("../../../testMap.txt"));
+        }
+
+        [Test]
+        public void IncorrectFilePathTest()
+        {
+            Assert.Throws<FileNotFoundException>(() => testGame = new Game("../../../test1212.txt")) ;
         }
     }
 }

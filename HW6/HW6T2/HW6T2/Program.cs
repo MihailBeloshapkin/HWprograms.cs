@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace HW6T2
 {
@@ -22,6 +23,10 @@ namespace HW6T2
             catch (NoSpaceException)
             {
                 Console.WriteLine("Incorret map");
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("Incorrect file path");
             }
         }
     }

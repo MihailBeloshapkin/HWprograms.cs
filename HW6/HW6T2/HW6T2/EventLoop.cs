@@ -4,6 +4,9 @@ using System.Text;
 
 namespace HW6T2
 {
+    /// <summary>
+    /// Four cursor event.
+    /// </summary>
     public class EventLoop
     {
 
