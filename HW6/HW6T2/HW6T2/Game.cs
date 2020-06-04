@@ -47,7 +47,7 @@ namespace HW6T2
 
 
         /// <summary>
-        /// Change map cofiguration dependiong on player's decigions.
+        /// Change map cofiguration dependiong on player's decisionы.
         /// </summary>
         /// <param name="moveX"></param>
         /// <param name="moveY"></param>
