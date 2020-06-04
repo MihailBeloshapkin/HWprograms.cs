@@ -5,12 +5,15 @@ using System.Text;
 
 namespace HW4T2
 {
+    /// <summary>
+    /// This class contains list structure.
+    /// </summary>
     public class List
     {
-        protected ListElement head;
-        protected int sizeOfList = 0;
+        private ListElement head;
+        private int sizeOfList = 0;
 
-        protected class ListElement
+        private class ListElement
         {
             public int data;
             public ListElement next;
@@ -53,7 +56,7 @@ namespace HW4T2
         public virtual void AddToListBack(int newData)
         {
             var current = head;
-            ListElement newElement = new ListElement(newData, null);
+            var newElement = new ListElement(newData, null);
 
             if (sizeOfList == 0)
             {
