@@ -6,8 +6,23 @@ namespace HW6T2
     {
         public static void Main()
         {
-            var map = new Map("../../../map.txt");
-            map.DisplayMap();
+            try 
+            {
+                var Game = new Game("../../../map.txt");
+                var eventLoop = new EventLoop();
+
+
+                eventLoop.RightHandler += Game.MoveRight;
+                eventLoop.LeftHandler += Game.MoveLeft;
+                eventLoop.UpHandler += Game.MoveUp;
+                eventLoop.DownHandler += Game.MoveDown;
+
+                eventLoop.Run();
+            }
+            catch (NoSpaceException)
+            {
+                Console.WriteLine("Incorret map");
+            }
         }
     }
 }

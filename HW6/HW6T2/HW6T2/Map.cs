@@ -5,6 +5,9 @@ using System.IO;
 
 namespace HW6T2
 {
+    /// <summary>
+    /// This class contains map and its elements.
+    /// </summary>
     class Map
     {
         private char[,] map;
@@ -14,7 +17,7 @@ namespace HW6T2
         public Map(string fileName)
         {
             LoadAndCreateTheMap(fileName);
-            SetPositionOfCharacter();
+            SetPositionOfCharacter();               
         }
 
         /// <summary>
@@ -47,14 +50,22 @@ namespace HW6T2
             int sizeOfRow = 0;
             int sizeOfColumn = 0;
 
-            while (mapBuffer[sizeOfRow] != '\n')
+            while (mapBuffer[sizeOfRow] != '\r')
             {
                 sizeOfRow++;
             }
 
-            sizeOfColumn = mapBuffer.Length / (sizeOfRow + 1);
+            for (int iter = 0; iter < mapBuffer.Length; iter++)
+            {
+                if (mapBuffer[iter] == '\n')
+                {
+                    sizeOfColumn++;
+                }
+            }
 
-            map = new char[sizeOfRow, sizeOfColumn];
+            sizeOfColumn++;
+
+            map = new char[sizeOfColumn, sizeOfRow];
 
             int rowIndex = 0;
             int columnIndex = 0;
@@ -76,6 +87,17 @@ namespace HW6T2
         }
 
         /// <summary>
+        /// Change character ccordinates.
+        /// </summary>
+        /// <param name="moveX">Move by X direction.</param>
+        /// <param name="moveY">Move by Y firection.</param>
+        public void MoveTheCharacter(int moveX, int moveY)
+        {
+            PositionOfCharacter.X += moveX;
+            PositionOfCharacter.Y += moveY;
+        }
+
+        /// <summary>
         /// Display map to a console.
         /// </summary>
         public void DisplayMap()
@@ -84,7 +106,14 @@ namespace HW6T2
             {
                 for (int jiter = 0; jiter < map.GetLength(1); jiter++)
                 {
-                    Console.Write(map[iter, jiter]);
+                    if (iter == PositionOfCharacter.Y && jiter == PositionOfCharacter.X)
+                    {
+                        Console.Write('@');
+                    }
+                    else
+                    {
+                        Console.Write(map[iter, jiter]);
+                    }
                 }
                 Console.WriteLine();
             }
@@ -101,8 +130,7 @@ namespace HW6T2
                 {
                     if (map[iter, jiter] == ' ')
                     {
-                        PositionOfCharacter = (iter, jiter);
-                        map[iter, jiter] = '@';
+                        PositionOfCharacter = (jiter, iter);
                         return;
                     }
                 }
@@ -111,33 +139,24 @@ namespace HW6T2
             throw new NoSpaceException();
         }
 
+        /// <summary>
+        /// Checks that it is able to move character.
+        /// </summary>
+        /// <param name="moveX">Move by X direction.</param>
+        /// <param name="moveY">Move by Y direction.</param>
+        /// <returns></returns>
         public bool IsAbleToMove(int moveX, int moveY)
         {
             if (PositionOfCharacter.X + moveX > -1 &&
                 PositionOfCharacter.X + moveX < map.GetLength(1) &&
                 PositionOfCharacter.Y + moveY > -1 &&
                 PositionOfCharacter.Y + moveY < map.GetLength(0) &&
-                map[PositionOfCharacter.X, PositionOfCharacter.Y] == ' ')
+                map[PositionOfCharacter.Y + moveY, PositionOfCharacter.X + moveX] == ' ')
             {
                 return true;
             }
 
             return false;
         }
-
-        /// <summary>
-        /// Get symbol from the character position.
-        /// </summary>
-        /// <returns></returns>
-        public char GetSymbol()
-            => map[PositionOfCharacter.X, PositionOfCharacter.Y];
-
-        /// <summary>
-        /// Set symbol to the character position.
-        /// </summary>
-        /// <param name="symbol"></param>
-        public void SetSymbol(char symbol)
-            => map[PositionOfCharacter.X, PositionOfCharacter.Y] = symbol;
-
     }
 }

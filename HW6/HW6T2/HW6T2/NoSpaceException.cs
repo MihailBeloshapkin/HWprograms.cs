@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HW6T2
 {
-    class NoSpaceException : Exception
+    public class NoSpaceException : Exception
     {
         public NoSpaceException() { }
         public NoSpaceException(string message) : base(message) { }

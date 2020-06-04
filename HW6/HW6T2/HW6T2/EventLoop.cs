@@ -15,6 +15,9 @@ namespace HW6T2
         
         public event EventHandler<EventArgs> RightHandler = (sender, args) => { };
 
+        /// <summary>
+        /// Run the game process.
+        /// </summary>
         public void Run()
         {
             while (true)

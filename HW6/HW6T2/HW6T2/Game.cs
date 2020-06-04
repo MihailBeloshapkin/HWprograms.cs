@@ -7,11 +7,9 @@ namespace HW6T2
     /// <summary>
     /// Game.
     /// </summary>
-    class Game
+    public class Game
     {
         private Map Map;
-
-        private Character Character;
 
         /// <summary>
         /// Create map and character objects.
@@ -20,8 +18,7 @@ namespace HW6T2
         public Game(string fileName)
         {
             Map = new Map(fileName);
-            Character = new Character(Map.GetCharacterCoordinateX(), Map.GetCharacterCoordinateY());
-            SetCursorPosition(Map.GetCharacterCoordinateX(), Map.GetCharacterCoordinateY());
+            Map.DisplayMap();
         }
 
         /// <summary>
@@ -43,16 +40,27 @@ namespace HW6T2
             => Motion(1, 0);
 
         public void MoveUp(object sender, EventArgs args)
-            => Motion(0, 1);
-
-        public void MoveDown(object sender, EventArgs args)
             => Motion(0, -1);
 
+        public void MoveDown(object sender, EventArgs args)
+            => Motion(0, 1);
+
+
+        /// <summary>
+        /// Change map cofiguration dependiong on player's decigions.
+        /// </summary>
+        /// <param name="moveX"></param>
+        /// <param name="moveY"></param>
         public void Motion(int moveX, int moveY)
         {
             if (Map.IsAbleToMove(moveX, moveY))
             {
-
+                SetCursorPosition(Map.GetCharacterCoordinateX(), Map.GetCharacterCoordinateY());
+                Console.Write(' ');
+                Map.MoveTheCharacter(moveX, moveY);
+                SetCursorPosition(Map.GetCharacterCoordinateX(), Map.GetCharacterCoordinateY());
+                Console.Write('@');
+                SetCursorPosition(Map.GetCharacterCoordinateX(), Map.GetCharacterCoordinateY());
             }
         }
     }
