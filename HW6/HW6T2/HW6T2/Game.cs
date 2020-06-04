@@ -12,7 +12,7 @@ namespace HW6T2
         private Map Map;
 
         /// <summary>
-        /// Create map and character objects.
+        /// Create map objects.
         /// </summary>
         /// <param name="fileName"></param>
         public Game(string fileName)
@@ -22,7 +22,7 @@ namespace HW6T2
         }
 
         /// <summary>
-        /// Set position of cursor.
+        /// Set position of the cursor.
         /// </summary>
         /// <param name="coordinateX"></param>
         /// <param name="coordinateY"></param>
@@ -47,7 +47,7 @@ namespace HW6T2
 
 
         /// <summary>
-        /// Change map configuration dependiong on player's decisions.
+        /// Change map configuration dependiong on players decisions.
         /// </summary>
         /// <param name="moveX"></param>
         /// <param name="moveY"></param>
