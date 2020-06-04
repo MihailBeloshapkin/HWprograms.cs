@@ -24,8 +24,8 @@ namespace HW6T2
         /// <summary>
         /// Set position of the cursor.
         /// </summary>
-        /// <param name="coordinateX"></param>
-        /// <param name="coordinateY"></param>
+        /// <param name="coordinateX">Set coordinate X</param>
+        /// <param name="coordinateY">Set coordinate Y</param>
         private void SetCursorPosition(int coordinateX, int coordinateY)
         {
             Console.CursorLeft = coordinateX;
@@ -49,8 +49,8 @@ namespace HW6T2
         /// <summary>
         /// Change map configuration dependiong on players decisions.
         /// </summary>
-        /// <param name="moveX"></param>
-        /// <param name="moveY"></param>
+        /// <param name="moveX">Change X direction.</param>
+        /// <param name="moveY">Change Y direction.</param>
         public void Motion(int moveX, int moveY)
         {
             if (Map.IsAbleToMove(moveX, moveY))
