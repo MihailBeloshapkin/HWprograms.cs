@@ -23,15 +23,6 @@ namespace HW4T2
         }
 
         [Test]
-        public void AddtolistBackRepetitiveElementsTest()
-        {
-            testList.AddToListBack(30);
-            testList.AddToListBack(31);
-            testList.AddToListBack(32);
-            Assert.Throws<AddDataThatIsAlreadyInTheListException>(() => testList.AddToListBack(30));
-        }
-
-        [Test]
         public void DeleteFromEmptyListFrontTest()
         {
             Assert.Throws<DeleteFromEmptyListException>(() => testList.DeleteFromListFront());

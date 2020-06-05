@@ -4,7 +4,7 @@ namespace HW4T2
 {
     public class Tests
     {
-        List testList = null;
+        private List testList = null;
 
         [SetUp]
         public void Setup()
@@ -15,16 +15,8 @@ namespace HW4T2
         [Test]
         public void AdditionToListFrontTest()
         {
-            Assert.AreEqual(testList.Size(), 0);
+            Assert.AreEqual(0, testList.Size());
             testList.AddToListFront(30);
-            Assert.IsTrue(testList.Contains(30));
-        }
-
-        [Test]
-        public void AdditionToListBackTest()
-        {
-            Assert.AreEqual(testList.Size(), 0);
-            testList.AddToListBack(30);
             Assert.IsTrue(testList.Contains(30));
         }
 
@@ -33,22 +25,10 @@ namespace HW4T2
         {
             for (int iter = 0; iter < 30; iter++)
             {
-                testList.AddToListBack(iter);
-            }
-            Assert.IsTrue(testList.Contains(0));
-            testList.DeleteFromListFront();
-            Assert.IsFalse(testList.Contains(0));
-        }
-
-        [Test]
-        public void DeleteFromListBackTest()
-        {
-            for (int iter = 0; iter < 30; iter++)
-            {
-                testList.AddToListBack(iter);
+                testList.AddToListFront(iter);
             }
             Assert.IsTrue(testList.Contains(29));
-            testList.DeleteFromListBack();
+            testList.DeleteFromListFront();
             Assert.IsFalse(testList.Contains(29));
         }
 
@@ -58,10 +38,10 @@ namespace HW4T2
             int size = 10000;
             for (int iter = 0; iter < size; iter++)
             {
-                testList.AddToListBack(iter);
+                testList.AddToListFront(iter);
             }
             
-            for (int iter = 0; iter < size; iter++)
+            for (int iter = size - 1; iter > -1; iter--)
             {
                 Assert.IsTrue(testList.Contains(iter));
                 testList.DeleteFromListFront();
@@ -75,12 +55,12 @@ namespace HW4T2
 
             for (int iter = 0; iter < 30; iter++)
             {
-                testList.AddToListBack(iter + hugeValue);
+                testList.AddToListFront(iter + hugeValue);
             }
 
-            for (int iter = 0; iter < 30; iter++)
+            for (int iter = hugeValue + 29; iter > hugeValue - 1; iter--)
             {
-                Assert.IsTrue(testList.Contains(iter + hugeValue));
+                Assert.IsTrue(testList.Contains(iter));
                 testList.DeleteFromListFront();
             }
         }

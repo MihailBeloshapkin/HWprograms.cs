@@ -12,26 +12,11 @@ namespace HW4T2
         /// <param name="newData">Data that we want to add.</param>
         public override void AddToListFront(int newData)
         {
-            if (Contains(newData))
+            if (base.Contains(newData))
             {
-                throw new AddDataThatIsAlreadyInTheListException($"Element {newData} is already in the list");
+                throw new AddDataThatIsAlreadyInTheListException();
             }
-
             base.AddToListFront(newData);
-        }
-
-        /// <summary>
-        /// Add to list back and throw exception in case if newData is already contained into list.
-        /// </summary>
-        /// <param name="newData">Data that we want to add.</param>
-        public override void AddToListBack(int newData)
-        {
-            if (Contains(newData))
-            {
-                throw new AddDataThatIsAlreadyInTheListException($"Element {newData} is already in the list");
-            }
-
-            base.AddToListBack(newData);
         }
 
         /// <summary>
@@ -39,11 +24,6 @@ namespace HW4T2
         /// </summary>
         public override void DeleteFromListFront()
         {
-            if (base.Size() < 1)
-            {
-                throw new DeleteFromEmptyListException("Impossible to delete data from the empty list.");
-            }
-
             base.DeleteFromListFront();
         }
 
@@ -52,11 +32,6 @@ namespace HW4T2
         /// </summary>
         public override void DeleteFromListBack()
         {
-            if (base.Size() < 1)
-            {
-                throw new DeleteFromEmptyListException("Impossible to delete data from the empty list.");
-            }
-
             base.DeleteFromListBack();
         }
     }

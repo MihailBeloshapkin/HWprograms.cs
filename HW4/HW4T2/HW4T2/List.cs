@@ -50,31 +50,6 @@ namespace HW4T2
         }
 
         /// <summary>
-        /// Add new data to the back of the list.
-        /// </summary>
-        /// <param name="newData">Data that we want to add</param>
-        public virtual void AddToListBack(int newData)
-        {
-            var current = head;
-            var newElement = new ListElement(newData, null);
-
-            if (sizeOfList == 0)
-            {
-                head = newElement;
-                sizeOfList++;
-                return;
-            }
-
-            for (int iter = 0; iter < sizeOfList - 1; iter++)
-            {
-                current = current.next;
-            }
-
-            current.next = newElement;
-            sizeOfList++;
-        }
-
-        /// <summary>
         /// Delete data from list front.
         /// </summary>
         /// <returns>Deleted element</returns>
