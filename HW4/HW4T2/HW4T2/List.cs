@@ -11,6 +11,8 @@ namespace HW4T2
     public class List
     {
         private ListElement head;
+        private ListElement tail;
+
         private int sizeOfList = 0;
 
         private class ListElement
@@ -46,6 +48,11 @@ namespace HW4T2
         public virtual void AddToListFront(int newData)
         {
             this.head = new ListElement(newData, this.head);
+
+            if (sizeOfList == 0)
+            {
+                this.tail = this.head;
+            }
             this.sizeOfList++;
         }
 
@@ -74,20 +81,8 @@ namespace HW4T2
                 throw new DeleteFromEmptyListException();
             }
 
-            if (sizeOfList == 1)
-            {
-                head = null;
-                sizeOfList--;
-            }
-            var current = head;
-
-            for (int iter = 0; iter < sizeOfList - 2; iter++)
-            {
-                current = current.next;
-            }
-
-            current.next = null;
-            sizeOfList--;
+            this.tail = null;
+            this.sizeOfList--;
         }
 
         /// <summary>
