@@ -12,10 +12,10 @@ namespace HW4T2
         public AddDataThatIsAlreadyInTheListException() { }
         public AddDataThatIsAlreadyInTheListException(string message) : base(message) { }
         public AddDataThatIsAlreadyInTheListException(string message, Exception inner)
-        : base(message, inner) { }
+            : base(message, inner) { }
         protected AddDataThatIsAlreadyInTheListException(
         System.Runtime.Serialization.SerializationInfo info,
         System.Runtime.Serialization.StreamingContext context)
-        : base(info, context) { }
+            : base(info, context) { }
     }
 }
