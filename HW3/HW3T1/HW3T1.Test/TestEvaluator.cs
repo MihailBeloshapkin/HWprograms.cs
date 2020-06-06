@@ -4,7 +4,7 @@ namespace HW3T1
 {
     public class TestEvaluator
     {
-        bool isCorrect;
+        private bool isCorrect;
 
         [SetUp]
         public void Setup()
@@ -16,7 +16,7 @@ namespace HW3T1
         public void TypicalInputTest1()
         {
             int answer1 = Calculation.Evaluator("2 7 + 3 / 8 *", 0, ref isCorrect);
-            Assert.AreEqual(answer1, 24);
+            Assert.AreEqual(24, answer1);
         }
 
         [Test]
@@ -24,7 +24,7 @@ namespace HW3T1
         {
             isCorrect = true;
             int answer3 = Calculation.Evaluator("6 9 + 5 - 9 5 * +", 0, ref isCorrect);
-            Assert.AreEqual(answer3, 55);
+            Assert.AreEqual(55, answer3);
         }
 
         [Test]
@@ -85,13 +85,13 @@ namespace HW3T1
         [Test]
         public void MultiplyTwoZeros()
         {
-            Assert.AreEqual(Calculation.Evaluator("0 0 *", 0, ref isCorrect), 0);
+            Assert.AreEqual(0, Calculation.Evaluator("0 0 *", 0, ref isCorrect));
         }
 
         [Test]
         public void AdditionOfTwoZeros()
         {
-            Assert.AreEqual(Calculation.Evaluator("0 0 +", 0, ref isCorrect), 0);
+            Assert.AreEqual(0, Calculation.Evaluator("0 0 +", 0, ref isCorrect));
         }
 
         [Test]

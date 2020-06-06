@@ -8,7 +8,7 @@ namespace HW3T1
     {
         private IStack listStack;
         private IStack arrayStack;
-        bool isCorrect;
+        private bool isCorrect;
 
         [SetUp]
         public void Setup()
