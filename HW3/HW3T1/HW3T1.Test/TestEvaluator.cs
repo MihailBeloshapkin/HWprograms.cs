@@ -74,14 +74,14 @@ namespace HW3T1
             (answer, isCorrect) = testCalculator.Evaluate("12.7 89.5 +");
             Assert.IsFalse(isCorrect);
         }
-        /*
+        
         [Test]
         public void ZeroDivisionTest()
         {
             (answer, isCorrect) = testCalculator.Evaluate("9 0 /");
             Assert.IsFalse(isCorrect);
         }
-        */
+        
         [Test]
         public void MultiplyTwoZeros()
         {
