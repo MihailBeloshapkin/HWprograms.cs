@@ -45,7 +45,6 @@ namespace HW3T1
                         return (-1, isCorrect);
                     }
 
-
                     switch (expression[index])
                     {
                         case '+':

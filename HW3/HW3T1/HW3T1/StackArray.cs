@@ -38,12 +38,10 @@ namespace HW3T1
             headIndex--;
             sizeOfStack--;
             return deletedData;
-        }   
-        
-        public int Size()
-        {
-            return sizeOfStack;
         }
+
+        public int Size()
+            => sizeOfStack;
 
         private void ArrayExpansion()
         {

@@ -102,6 +102,5 @@ namespace HW3T1
             (answer, isCorrect) = testCalculator.Evaluate("-1 9 *");
             Assert.IsFalse(isCorrect);
         }
-        
     }
 }
