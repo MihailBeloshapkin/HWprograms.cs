@@ -4,101 +4,111 @@ namespace HW3T1
 {
     public class TestEvaluator
     {
+        private int answer;
         private bool isCorrect;
+        private Calculator testCalculator;
+        private IStack testStack;
 
         [SetUp]
         public void Setup()
         {
+            answer = 0;
+            testStack = new StackList();
+            testCalculator = new Calculator(testStack);
             isCorrect = true;
         }
+        
 
         [Test]
         public void TypicalInputTest1()
         {
-            int answer1 = Calculation.Evaluator("2 7 + 3 / 8 *", 0, ref isCorrect);
-            Assert.AreEqual(24, answer1);
+            (answer, isCorrect) = testCalculator.Evaluate("2 7 + 3 / 8 *");
+            Assert.AreEqual(24, answer);
         }
 
         [Test]
         public void TypicalInputTest2()
         {
-            isCorrect = true;
-            int answer3 = Calculation.Evaluator("6 9 + 5 - 9 5 * +", 0, ref isCorrect);
-            Assert.AreEqual(55, answer3);
+            (answer, isCorrect) = testCalculator.Evaluate("6 9 + 5 - 9 5 * +");
+            Assert.AreEqual(55, answer);
         }
 
         [Test]
         public void IncorrectInputTest()
         {
-            Calculation.Evaluator("2 7 + 3 / 8 ", 0, ref isCorrect);
+            (answer, isCorrect) = testCalculator.Evaluate("2 7 + 3 / 8 ");
             Assert.IsFalse(isCorrect);
         }
 
         [Test]
         public void InputContainsHHugeNumbers()
         {
-            Calculation.Evaluator("9999999999 123456789 -", 0, ref isCorrect);
+            (answer, isCorrect) = testCalculator.Evaluate("9999999999 123456789 -");
             Assert.IsFalse(isCorrect);
         }
 
         [Test]
         public void InputContainsIncorrectSymbols()
         {
-            Calculation.Evaluator("2 & * ( , m", 1, ref isCorrect);
+            (answer, isCorrect) = testCalculator.Evaluate("2 & * ( , m");
             Assert.IsFalse(isCorrect);
         }
 
         [Test]
         public void OnlyOneNumberInput()
         {
-            Assert.AreEqual(30, Calculation.Evaluator("30", 0, ref isCorrect));
+            (answer, isCorrect) = testCalculator.Evaluate("30");
+            Assert.AreEqual(30, answer);
         }
 
         [Test]
         public void EmptyInput()
         {
-            Calculation.Evaluator("", 1, ref isCorrect);
+            (answer, isCorrect) = testCalculator.Evaluate("");
             Assert.IsFalse(isCorrect);
         }
 
         [Test]
         public void OnlyIncorrectTrash()
         {
-            Calculation.Evaluator("&^%$#VBNM<>?ца1234%$#@#$%^&*(", 1, ref isCorrect);
+            (answer, isCorrect) = testCalculator.Evaluate("&^%$#VBNM<>?ца1234%$#@#$%^&*(");
             Assert.IsFalse(isCorrect);
         }
 
         [Test]
         public void InputContainsFloatNumbers()
         {
-            Calculation.Evaluator("12.7 89.5 +", 0, ref isCorrect);
+            (answer, isCorrect) = testCalculator.Evaluate("12.7 89.5 +");
             Assert.IsFalse(isCorrect);
         }
 
         [Test]
         public void ZeroDivisionTest()
         {
-            Calculation.Evaluator("9 0 /", 0, ref isCorrect);
+            (answer, isCorrect) = testCalculator.Evaluate("9 0 /");
             Assert.IsFalse(isCorrect);
         }
 
         [Test]
         public void MultiplyTwoZeros()
         {
-            Assert.AreEqual(0, Calculation.Evaluator("0 0 *", 0, ref isCorrect));
+            (answer, isCorrect) = testCalculator.Evaluate("0 0 *");
+            Assert.AreEqual(0, answer);
         }
 
         [Test]
         public void AdditionOfTwoZeros()
         {
-            Assert.AreEqual(0, Calculation.Evaluator("0 0 +", 0, ref isCorrect));
+            (answer, isCorrect) = testCalculator.Evaluate("0 0 +");
+            Assert.AreEqual(0, answer);
         }
 
         [Test]
         public void IncorrectFormOdNegativeValue()
         {
-            Calculation.Evaluator("-1 9 *", 0, ref isCorrect);
+            (answer, isCorrect) = testCalculator.Evaluate("-1 9 *");
             Assert.IsFalse(isCorrect);
         }
+        
     }
 }

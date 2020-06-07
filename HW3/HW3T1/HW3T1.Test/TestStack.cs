@@ -1,86 +1,76 @@
 using System;
 using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace HW3T1
 {
     public class StackTest
     {
-        private IStack listStack;
-        private IStack arrayStack;
         private bool isCorrect;
 
         [SetUp]
         public void Setup()
         {
-            listStack = new StackList();
-            arrayStack = new StackArray();
             isCorrect = false;
         }
 
-        [Test]
-        public void PushTest()
+        static IEnumerable<IStack> TestStacks()
         {
-            Assert.IsTrue(listStack.IsEmpty());
-            Assert.IsTrue(arrayStack.IsEmpty());
-            listStack.Push(7);
-            arrayStack.Push(7);
-            Assert.IsFalse(listStack.IsEmpty());
-            Assert.IsFalse(arrayStack.IsEmpty());
+            yield return new StackArray();
+            yield return new StackList();
         }
 
-        [Test]
-        public void PopTest()
+        [TestCaseSource(nameof(TestStacks))]
+        public void SimplePushTest(IStack testStack)
         {
-            listStack.Push(7);
-            arrayStack.Push(7);
-            var result1 = listStack.Pop(ref isCorrect);
-            var result2 = arrayStack.Pop(ref isCorrect);
-            Assert.AreEqual(7, result1);
-            Assert.AreEqual(7, result2);
+            Assert.IsTrue(testStack.IsEmpty());
+            testStack.Push(30);
+            Assert.IsFalse(testStack.IsEmpty());
         }
 
-        [Test]
-        public void PopFromEmptyStack()
+        [TestCaseSource(nameof(TestStacks))]
+        public void SimplePopTest(IStack testStack)
         {
-            var result1 = listStack.Pop(ref isCorrect);
-            var result2 = arrayStack.Pop(ref isCorrect);
-            Assert.IsFalse(isCorrect);
+            testStack.Push(30);
+            var result = testStack.Pop(ref isCorrect);
+            Assert.AreEqual(30, result);
+        }
+
+        [TestCaseSource(nameof(TestStacks))]
+        public void PopFromEmptyStackTest(IStack testStack)
+        {
+            testStack.Pop(ref isCorrect);
             Assert.IsFalse(isCorrect);
         }
 
-        [Test]
-        public void HugeCountOfInputDataTest()
+        [TestCaseSource(nameof(TestStacks))]
+        public void HugeCountOfInputDataTest(IStack testStack)
         {
             for (int iter = 0; iter < 1000000; iter++)
             {
-                listStack.Push(iter);
-                arrayStack.Push(iter);
+                testStack.Push(iter);
             }
+
             for (int iter = 999999; iter >= 0; iter--)
             {
-                var result1 = listStack.Pop(ref isCorrect);
-                var result2 = arrayStack.Pop(ref isCorrect);
-                Assert.AreEqual(iter, result1);
-                Assert.AreEqual(iter, result2);
+                var result = testStack.Pop(ref isCorrect);
+                Assert.AreEqual(iter, result);
             }
         }
 
-        [Test]
-        public void HugeValueOfInputDataTest()
+        [TestCaseSource(nameof(TestStacks))]
+        public void HugeValueOfInputDataTest(IStack testStack)
         {
             for (int iter = 0; iter < 30; iter++)
             {
-                listStack.Push(1000000000 + iter);
-                arrayStack.Push(1000000000 + iter);
+                testStack.Push(1000000000 + iter);
             }
 
             for (int iter = 0; iter < 30; iter++)
             {
-                var result1 = listStack.Pop(ref isCorrect);
-                var result2 = arrayStack.Pop(ref isCorrect);
-                Assert.AreEqual(1000000029 - iter, result1);
-                Assert.AreEqual(1000000029 - iter, result2);
+                var result = testStack.Pop(ref isCorrect);
+                Assert.AreEqual(1000000029 - iter, result);
             }
         }
     }

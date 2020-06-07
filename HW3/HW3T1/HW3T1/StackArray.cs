@@ -6,8 +6,7 @@ namespace HW3T1
 {
     public class StackArray : IStack
     {
-        static private int maxSize = 30;
-        private int[] stackArray = new int[maxSize];
+        private int[] stackArray = new int[30];
         private int headIndex = 0;
         static private int sizeOfStack = 0;
 
@@ -18,7 +17,7 @@ namespace HW3T1
 
         public void Push(int newData)
         {
-            if (headIndex == maxSize)
+            if (headIndex == stackArray.Length - 1)
             {
                 ArrayExpansion();
             }
@@ -48,15 +47,13 @@ namespace HW3T1
 
         private void ArrayExpansion()
         {
-            int newMaxStackSize = maxSize * 2;
-            int[] newStackArray = new int[newMaxStackSize];
+            int[] newStackArray = new int[stackArray.Length * 2];
 
             for (int index = 0; index < sizeOfStack; index++)
             {
                 newStackArray[index] = stackArray[index];
             }
             stackArray = newStackArray;
-            maxSize = newMaxStackSize;
         }
     }
 }

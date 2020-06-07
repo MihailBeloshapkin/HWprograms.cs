@@ -6,11 +6,29 @@ namespace HW3T1
     {
         static void Main(string[] args)
         {
-            bool isCorrect = true; 
-            Calculation.Evaluator("2 3 +", 0, ref isCorrect);
-            Calculation.Evaluator("2 7 + 3 / 8 *", 1, ref isCorrect);
-            Calculation.Evaluator("6 9 + 5 - 9 5 * +", 0, ref isCorrect);
-            Calculation.Evaluator("6 9 + 5 - 9 5 * +", 1, ref isCorrect);  
+            int stackVariant = 1;
+
+            IStack stack;
+
+            if (stackVariant == 0)
+            {
+                stack = new StackList();
+            }
+            else if (stackVariant == 1)
+            {
+                stack = new StackArray();
+            }
+            else
+            {
+                return;
+            }
+
+            Calculator calculator = new Calculator(stack);
+            int result;
+            bool isCorrect;
+
+            (result, isCorrect) = calculator.Evaluate("2 7 + 3 / 8 *");
+            Console.WriteLine(result);
         }
     }
 }

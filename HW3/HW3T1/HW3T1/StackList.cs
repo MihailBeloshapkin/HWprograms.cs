@@ -6,7 +6,7 @@ namespace HW3T1
 {
     public class StackList : IStack
     {
-        class StackElement
+        private class StackElement
         {
             public StackElement(int newData, StackElement stackElement)
             {
@@ -20,9 +20,9 @@ namespace HW3T1
             
         }
 
-        StackElement head;
+        private StackElement head;
 
-        int sizeOfStack = 0;
+        private int sizeOfStack = 0;
 
         public void Push(int newData)
         {
@@ -44,13 +44,10 @@ namespace HW3T1
         }
 
         public bool IsEmpty()
-        {
-            return head == null;
-        }
+            => head == null;
 
         public int Size()
-        {
-            return sizeOfStack;
-        }
+            => sizeOfStack;
+
     }
 }
