@@ -17,7 +17,7 @@ namespace HW3T1
         {
             string answer = null;
 
-            while (Char.IsDigit(input[index]))
+            while (index < input.Length && Char.IsDigit(input[index]))
             {
                 answer += input[index];
                 index++;
@@ -58,20 +58,24 @@ namespace HW3T1
                             stack.Push(firstNum * secondNum);
                             break;
                         case '/':
+                            if (firstNum == 0)
+                            {
+                                isCorrect = false;
+                                return (-1, isCorrect);
+                            }
                             stack.Push(secondNum / firstNum);
                             break;
                     }
                    
                     index++;
                 }
-
                 else if (Char.IsDigit(expression[index]))
                 {
                     stack.Push(TranslateToInteger(expression, ref index));
                 }
             }
 
-            if (stack.IsEmpty())
+            if (stack.Size() != 1)
             {
                 isCorrect = false;
                 return (-1, isCorrect);

@@ -41,13 +41,6 @@ namespace HW3T1
         }
 
         [Test]
-        public void InputContainsHHugeNumbers()
-        {
-            (answer, isCorrect) = testCalculator.Evaluate("9999999999 123456789 -");
-            Assert.IsFalse(isCorrect);
-        }
-
-        [Test]
         public void InputContainsIncorrectSymbols()
         {
             (answer, isCorrect) = testCalculator.Evaluate("2 & * ( , m");
@@ -81,14 +74,14 @@ namespace HW3T1
             (answer, isCorrect) = testCalculator.Evaluate("12.7 89.5 +");
             Assert.IsFalse(isCorrect);
         }
-
+        /*
         [Test]
         public void ZeroDivisionTest()
         {
             (answer, isCorrect) = testCalculator.Evaluate("9 0 /");
             Assert.IsFalse(isCorrect);
         }
-
+        */
         [Test]
         public void MultiplyTwoZeros()
         {

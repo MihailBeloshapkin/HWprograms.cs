@@ -27,7 +27,7 @@ namespace HW3T1
             int result;
             bool isCorrect;
 
-            (result, isCorrect) = calculator.Evaluate("2 7 + 3 / 8 *");
+            (result, isCorrect) = calculator.Evaluate("30");
             Console.WriteLine(result);
         }
     }
