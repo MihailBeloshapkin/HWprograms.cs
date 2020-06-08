@@ -24,6 +24,11 @@ namespace test2
             return alphabet;
         }
 
+        /// <summary>
+        /// Check that input contains only english letters.
+        /// </summary>
+        /// <param name="input">Input string.</param>
+        /// <returns>True in case if input is correct, false in the other case.</returns>
         private bool CheckThatInputIsCorrect(string input)
         {
             for (int iter = 0; iter < input.Length; iter++)
