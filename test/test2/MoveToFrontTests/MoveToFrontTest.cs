@@ -4,9 +4,9 @@ namespace test2
 {
     public class Tests
     {
-        int[] result;
-        int[] rightAnswer;
-        MoveToFront testClass;
+        private int[] result;
+        private int[] rightAnswer;
+        private MoveToFront testClass;
 
         [SetUp]
         public void Setup()
