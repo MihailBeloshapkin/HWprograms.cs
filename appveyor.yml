@@ -7,4 +7,3 @@ build_script:
 
 test_script:
   - dotnet test test\test2\test2.sln
-
