@@ -6,7 +6,9 @@ namespace HW4T1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var tree = new Tree("* (+ 2 2 ) 5");
+            tree.Display();
+            tree.Calculate();
         }
     }
 }

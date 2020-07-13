@@ -5,27 +5,24 @@ using System.Text;
 namespace HW4T1
 {
     /// <summary>
-    /// Division operation.
+    /// Subtraction operation.
     /// </summary>
-    public class Division : Operation
+    public class Subtraction : Operation
     {
-        /// <summary>
-        /// Display operation to a console.
-        /// </summary>
         public override void Display()
         {
-            Console.Write("/ ");
+            Console.Write("- ");
             left.Display();
             right.Display();
         }
 
         /// <summary>
-        /// Execute division operation.
+        /// Execute subtraction operation.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Resulr of the operation.</returns>
         public override int Calculate()
         {
-            return left.Calculate() / right.Calculate();
+            return left.Calculate() - right.Calculate();
         }
     }
 }
