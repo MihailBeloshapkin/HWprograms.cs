@@ -13,14 +13,22 @@ namespace HW4T1
             this.number = newNumber;
         }
 
+        /// <summary>
+        /// Get current operand.
+        /// </summary>
+        /// <returns>Current operand.</returns>
         public int GetOperand()
             => number;
 
+        /// <summary>
+        /// Display current operand to a console.
+        /// </summary>
         public void Display()
         {
             Console.Write($"{number} ");
         }
 
+        /// <returns>Current value.</returns>
         public int Calculate()
             => number;
     }
