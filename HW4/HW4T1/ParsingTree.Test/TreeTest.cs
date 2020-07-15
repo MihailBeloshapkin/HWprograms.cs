@@ -14,6 +14,13 @@ namespace HW4T1
         }
 
         [Test]
+        public void SimpleTest0()
+        {
+            testTree = new Tree("+ 2 2");
+            Assert.AreEqual(4, testTree.Calculate());
+        }
+
+        [Test]
         public void SimpleTest1()
         {
             testTree = new Tree("* (+ 5 4) 7");
@@ -25,6 +32,13 @@ namespace HW4T1
         {
             testTree = new Tree("/ (* (+ 5 4) 7) 7");
             Assert.AreEqual(9, testTree.Calculate());
+        }
+
+        [Test]
+        public void InputContainsOnlyOneNumberTest()
+        {
+            testTree = new Tree("30");
+            Assert.AreEqual(30, testTree.Calculate());
         }
 
         [Test]
