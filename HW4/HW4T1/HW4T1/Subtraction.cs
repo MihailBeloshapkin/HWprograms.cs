@@ -9,6 +9,9 @@ namespace HW4T1
     /// </summary>
     public class Subtraction : Operation
     {
+        /// <summary>
+        /// Print substraction symbol to a console.
+        /// </summary>
         public override void Display()
         {
             Console.Write("- ");

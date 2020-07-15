@@ -4,7 +4,10 @@ using System.Text;
 
 namespace HW4T1
 {
-    class UnrecognisedCharException : Exception
+    /// <summary>
+    /// In case if input contains incorrect symbol.
+    /// </summary>
+    public class UnrecognisedCharException : Exception
     {
         public UnrecognisedCharException() { }
         public UnrecognisedCharException(string message) : base(message) { }

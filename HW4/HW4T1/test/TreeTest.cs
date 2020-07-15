@@ -1,8 +1,8 @@
 using NUnit.Framework;
 
-namespace HW4T1
+namespace test
 {
-    public class Tests
+    public class TreeTest
     {
         [SetUp]
         public void Setup()

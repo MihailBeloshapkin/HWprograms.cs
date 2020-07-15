@@ -13,22 +13,6 @@ namespace HW4T1
     {
         ITreeElement root;
 
-        private class TreeElement
-        {
-            ITreeElement treeElement;
-            TreeElement left;
-            TreeElement right;
-            TreeElement parent;
-
-            public TreeElement(ITreeElement newTreeElement, TreeElement left, TreeElement right, TreeElement parent)
-            {
-                this.treeElement = newTreeElement;
-                this.left = left;
-                this.right = right;
-                this.parent = parent;
-            }
-        }
-
         public Tree(string input)
         {
             int index = 0;
