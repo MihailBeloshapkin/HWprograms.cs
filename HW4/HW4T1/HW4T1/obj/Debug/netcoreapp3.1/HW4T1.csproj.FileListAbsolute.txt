@@ -1,0 +1,13 @@
+C:\Users\france\source\repos\HWprograms.cs\HW4\HW4T1\HW4T1\bin\Debug\netcoreapp3.1\HW4T1.exe
+C:\Users\france\source\repos\HWprograms.cs\HW4\HW4T1\HW4T1\bin\Debug\netcoreapp3.1\HW4T1.deps.json
+C:\Users\france\source\repos\HWprograms.cs\HW4\HW4T1\HW4T1\bin\Debug\netcoreapp3.1\HW4T1.runtimeconfig.json
+C:\Users\france\source\repos\HWprograms.cs\HW4\HW4T1\HW4T1\bin\Debug\netcoreapp3.1\HW4T1.runtimeconfig.dev.json
+C:\Users\france\source\repos\HWprograms.cs\HW4\HW4T1\HW4T1\bin\Debug\netcoreapp3.1\HW4T1.dll
+C:\Users\france\source\repos\HWprograms.cs\HW4\HW4T1\HW4T1\bin\Debug\netcoreapp3.1\HW4T1.pdb
+C:\Users\france\source\repos\HWprograms.cs\HW4\HW4T1\HW4T1\obj\Debug\netcoreapp3.1\HW4T1.csprojAssemblyReference.cache
+C:\Users\france\source\repos\HWprograms.cs\HW4\HW4T1\HW4T1\obj\Debug\netcoreapp3.1\HW4T1.csproj.CoreCompileInputs.cache
+C:\Users\france\source\repos\HWprograms.cs\HW4\HW4T1\HW4T1\obj\Debug\netcoreapp3.1\HW4T1.AssemblyInfoInputs.cache
+C:\Users\france\source\repos\HWprograms.cs\HW4\HW4T1\HW4T1\obj\Debug\netcoreapp3.1\HW4T1.AssemblyInfo.cs
+C:\Users\france\source\repos\HWprograms.cs\HW4\HW4T1\HW4T1\obj\Debug\netcoreapp3.1\HW4T1.dll
+C:\Users\france\source\repos\HWprograms.cs\HW4\HW4T1\HW4T1\obj\Debug\netcoreapp3.1\HW4T1.pdb
+C:\Users\france\source\repos\HWprograms.cs\HW4\HW4T1\HW4T1\obj\Debug\netcoreapp3.1\HW4T1.genruntimeconfig.cache
