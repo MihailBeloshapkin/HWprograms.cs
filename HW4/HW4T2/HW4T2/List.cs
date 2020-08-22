@@ -57,6 +57,59 @@ namespace HW4T2
         }
 
         /// <summary>
+        /// Add data to a fixed position.
+        /// </summary>
+        /// <param name="position">Input position.</param>
+        /// <param name="newData">New data that we would like to add.</param>
+        public virtual void AddToListPosition(int position, int newData)
+        {
+            if (position == 0)
+            {
+                head = new ListElement(newData, head);
+                sizeOfList++;
+                return;
+            }
+
+            if (position > sizeOfList || position < 0)
+            {
+                throw new IncorrectInputPositionException();
+            }
+
+            var current = this.head;
+
+            for (int iter = 0; iter < position - 1; iter++)
+            {
+                current = current.next;
+            }
+
+            current.next = new ListElement(newData, current.next);
+
+            this.sizeOfList++;
+        }
+
+        /// <summary>
+        /// Change element by position.
+        /// </summary>
+        /// <param name="position">Input position</param>
+        /// <param name="newData">New data instead of previous.</param>
+        public virtual void ChangeElementByPosition(int position, int newData)
+        {
+            if (position > sizeOfList || position < 0)
+            {
+                throw new IncorrectInputPositionException();
+            }
+
+            var current = this.head;
+
+            for (int iter = 0; iter < position; iter++)
+            {
+                current = current.next;
+            }
+
+            current.data = newData;
+        }
+
+        /// <summary>
         /// Delete data from list front.
         /// </summary>
         /// <returns>Deleted element</returns>
@@ -83,6 +136,34 @@ namespace HW4T2
 
             this.tail = null;
             this.sizeOfList--;
+        }
+
+        /// <summary>
+        /// Delete element by its position. 
+        /// </summary>
+        /// <param name="position">Input position.</param>
+        public virtual void DeleteFromListPosition(int position)
+        {
+            if (position < 0 || position > sizeOfList)
+            {
+                throw new IncorrectInputPositionException();
+            }
+
+            var current = this.head;
+
+            if (position == 0)
+            {
+                head = head.next;
+                sizeOfList--;
+                return;
+            }
+
+            for (int iter = 0; iter < position - 1; iter++)
+            {
+                current = current.next;
+            }
+
+            current.next = current.next.next;
         }
 
         /// <summary>
