@@ -21,6 +21,42 @@ namespace HW4T2
         }
 
         [Test]
+        public void AddToListPositionTest()
+        {
+            for (int iter = 0; iter < 5; iter++)
+            {
+                testList.AddToListFront(iter);
+            }
+
+            testList.AddToListPosition(2, 30);
+            Assert.AreEqual(2, testList.GetPositionByData(30));
+        }
+
+        [Test]
+        public void ChangeElementByPositionTest()
+        {
+            for (int iter = 0; iter < 5; iter++)
+            {
+                testList.AddToListFront(iter);
+            }
+
+            testList.ChangeElementByPosition(2, 30);
+            Assert.AreEqual(30, testList.GetDataByPosition(2));
+        }
+
+        [Test]
+        public void DeleteByListPositionTest()
+        {
+            for (int iter = 0; iter < 5; iter++)
+            {
+                testList.AddToListFront(iter);
+            }
+
+            testList.DeleteFromListPosition(2);
+            Assert.IsFalse(testList.Contains(2));
+        }
+
+        [Test]
         public void DeleteFromListFrontTest()
         {
             for (int iter = 0; iter < 30; iter++)

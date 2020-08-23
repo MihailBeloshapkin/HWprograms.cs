@@ -15,6 +15,7 @@ namespace HW4T2
                 uList.AddToListFront(4);
                 uList.AddToListFront(5);
                 uList.AddToListPosition(0, 99);
+                uList.DeleteFromListPosition(2);
                 uList.Display();
             }
             catch (AddDataThatIsAlreadyInTheListException e)

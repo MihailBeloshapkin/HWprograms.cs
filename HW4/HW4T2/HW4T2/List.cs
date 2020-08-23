@@ -164,6 +164,7 @@ namespace HW4T2
             }
 
             current.next = current.next.next;
+            this.sizeOfList--;
         }
 
         /// <summary>
@@ -185,6 +186,47 @@ namespace HW4T2
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// Search input data into the list and return its position.
+        /// </summary>
+        public int GetPositionByData(int element)
+        {
+            var current = this.head;
+            
+            for (int iter = 0; iter < sizeOfList; iter++)
+            {
+                if (current.data == element)
+                {
+                    return iter;
+                }
+
+                current = current.next;
+            }
+
+            return -1;
+        }
+
+        /// <summary>
+        /// Get position of the input element into list.
+        /// </summary>
+        /// <returns></returns>
+        public int GetDataByPosition(int position)
+        {
+            var current = this.head;
+
+            if (position > this.sizeOfList)
+            {
+                throw new IncorrectInputPositionException();
+            }
+
+            for (int iter = 0; iter < position; iter++)
+            {
+                current = current.next;
+            }
+
+            return current.data;
         }
 
         /// <summary>
