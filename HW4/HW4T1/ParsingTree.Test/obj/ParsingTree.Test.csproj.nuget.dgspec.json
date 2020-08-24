@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\france\\source\\repos\\HWprograms.cs\\HW4\\HW4T1\\ParsingTree.Test\\ParsingTree.Test.csproj": {}
+    "C:\\Users\\user\\HWprograms.cs\\HW4\\HW4T1\\ParsingTree.Test\\ParsingTree.Test.csproj": {}
   },
   "projects": {
-    "C:\\Users\\france\\source\\repos\\HWprograms.cs\\HW4\\HW4T1\\HW4T1\\HW4T1.csproj": {
+    "C:\\Users\\user\\HWprograms.cs\\HW4\\HW4T1\\HW4T1\\HW4T1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\france\\source\\repos\\HWprograms.cs\\HW4\\HW4T1\\HW4T1\\HW4T1.csproj",
+        "projectUniqueName": "C:\\Users\\user\\HWprograms.cs\\HW4\\HW4T1\\HW4T1\\HW4T1.csproj",
         "projectName": "HW4T1",
-        "projectPath": "C:\\Users\\france\\source\\repos\\HWprograms.cs\\HW4\\HW4T1\\HW4T1\\HW4T1.csproj",
-        "packagesPath": "C:\\Users\\france\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\france\\source\\repos\\HWprograms.cs\\HW4\\HW4T1\\HW4T1\\obj\\",
+        "projectPath": "C:\\Users\\user\\HWprograms.cs\\HW4\\HW4T1\\HW4T1\\HW4T1.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user\\HWprograms.cs\\HW4\\HW4T1\\HW4T1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\france\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -52,21 +52,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\france\\source\\repos\\HWprograms.cs\\HW4\\HW4T1\\ParsingTree.Test\\ParsingTree.Test.csproj": {
+    "C:\\Users\\user\\HWprograms.cs\\HW4\\HW4T1\\ParsingTree.Test\\ParsingTree.Test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\france\\source\\repos\\HWprograms.cs\\HW4\\HW4T1\\ParsingTree.Test\\ParsingTree.Test.csproj",
+        "projectUniqueName": "C:\\Users\\user\\HWprograms.cs\\HW4\\HW4T1\\ParsingTree.Test\\ParsingTree.Test.csproj",
         "projectName": "ParsingTree.Test",
-        "projectPath": "C:\\Users\\france\\source\\repos\\HWprograms.cs\\HW4\\HW4T1\\ParsingTree.Test\\ParsingTree.Test.csproj",
-        "packagesPath": "C:\\Users\\france\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\france\\source\\repos\\HWprograms.cs\\HW4\\HW4T1\\ParsingTree.Test\\obj\\",
+        "projectPath": "C:\\Users\\user\\HWprograms.cs\\HW4\\HW4T1\\ParsingTree.Test\\ParsingTree.Test.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user\\HWprograms.cs\\HW4\\HW4T1\\ParsingTree.Test\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\france\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -79,8 +79,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\france\\source\\repos\\HWprograms.cs\\HW4\\HW4T1\\HW4T1\\HW4T1.csproj": {
-                "projectPath": "C:\\Users\\france\\source\\repos\\HWprograms.cs\\HW4\\HW4T1\\HW4T1\\HW4T1.csproj"
+              "C:\\Users\\user\\HWprograms.cs\\HW4\\HW4T1\\HW4T1\\HW4T1.csproj": {
+                "projectPath": "C:\\Users\\user\\HWprograms.cs\\HW4\\HW4T1\\HW4T1\\HW4T1.csproj"
               }
             }
           }
@@ -122,7 +122,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
