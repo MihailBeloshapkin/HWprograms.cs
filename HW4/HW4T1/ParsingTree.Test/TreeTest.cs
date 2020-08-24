@@ -5,12 +5,11 @@ namespace HW4T1
 {
     public class Test
     {
-        Tree testTree;
+        private Tree testTree;
 
         [SetUp]
         public void Setup()
         {
-            testTree = null;
         }
 
         [Test]

@@ -11,7 +11,7 @@ namespace HW4T1
     /// </summary>
     public class Tree
     {
-        ITreeElement root;
+        private ITreeElement root;
 
         public Tree(string input)
         {
@@ -56,24 +56,19 @@ namespace HW4T1
         /// <returns>Oeration</returns>
         private Operation DetermineTheOperation(char symbol)
         {
-            if (symbol == '+')
+            switch (symbol)
             {
-                return new Addition();
-            }
-            if (symbol == '-')
-            {
-                return new Subtraction();
-            }
-            if (symbol == '*')
-            {
-                return new Multiplication();
-            }
-            if (symbol == '/')
-            {
-                return new Division();
+                case '+':
+                    return new Addition();
+                case '-':
+                    return new Subtraction();
+                case '*':
+                    return new Multiplication();
+                case '/':
+                    return new Division();
             }
 
-            throw new UnrecognisedCharException($"Unrecognised char: {symbol}");
+            throw new UnrecognisedCharException();
         }
 
         /// <summary>

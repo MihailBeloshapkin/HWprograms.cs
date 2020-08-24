@@ -4,6 +4,9 @@ using System.Text;
 
 namespace HW4T1
 {
+    /// <summary>
+    /// This class contains operand methods used in the parse tree.
+    /// </summary>
     class Operand : ITreeElement
     {
         private int number;

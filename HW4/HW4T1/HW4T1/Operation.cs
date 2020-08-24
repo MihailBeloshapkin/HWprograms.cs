@@ -6,8 +6,8 @@ namespace HW4T1
 {
     public abstract class Operation : ITreeElement
     {
-        public ITreeElement left;
-        public ITreeElement right;
+        public ITreeElement left { get; set; }
+        public ITreeElement right { get; set; }
 
         public ITreeElement GetLeft()
             => left;
