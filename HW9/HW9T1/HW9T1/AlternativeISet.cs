@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -262,6 +263,68 @@ namespace HW9T1
                 if (!this.Contains(element))
                 {
                     this.Remove(element);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Check that current set is a subset of the input collection.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
+        public bool IsProperSubsetOf(IEnumerable<T> collection)
+        {
+            if (collection == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            foreach (var element in this)
+        }
+        
+        /// <summary>
+        /// Compares current set to the input collection.
+        /// </summary>
+        /// <param name="collection">Input collection that we would like 
+        /// to compare with the current set.</param>
+        public bool SetEquals(ICollection<T> collection)
+        {
+            if (collection == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            if (this.Count != collection.Count)
+            {
+                return false;
+            }
+
+            foreach (var element in collection)
+            {
+                if (!this.Contains(element))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Concatinates the current set and input collection.
+        /// </summary>
+        public void UnionWith(ICollection<T> collection)
+        {
+            if (collection == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            foreach (var element in collection)
+            {
+                if (!this.Contains(element))
+                {
+                    this.Add(element);
                 }
             }
         }
