@@ -316,9 +316,9 @@ namespace HW9T1
                 throw new ArgumentNullException();
             }
 
-            foreach (var element in collection)
+            foreach (var element in this)
             {
-                if (!this.Contains(element))
+                if (!collection.Contains(element))
                 {
                     this.Remove(element);
                 }
