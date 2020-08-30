@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -29,6 +30,7 @@ namespace HW9T1
             public T data;
             public TreeElement less { get; set; }
             public TreeElement more { get; set; }
+            public TreeElement prev { get; set; }
 
             public bool IsLeaf()
                 => less == null && more == null;
@@ -36,7 +38,7 @@ namespace HW9T1
 
         private TreeElement root;
 
-        public int Count { get; set; }
+        public int Count { get; set; } = 0;
 
         public bool IsReadOnly { get; set; }
 
@@ -55,29 +57,37 @@ namespace HW9T1
             if (root == null)
             {
                 this.root = new TreeElement(item);
+                this.Count++;
                 return true;
             }
 
             var current = this.root;
 
-            while (current != null)
+            while (true)
             {
                 if (comparer.Compare(current.data, item) > 0)
                 {
+                    if (current.less == null)
+                    {
+                        current.less = new TreeElement(item);
+                        current.less.prev = current;
+                        this.Count++;
+                        return true;
+                    }
                     current = current.less;
                 }
                 else if (comparer.Compare(current.data, item) < 0)
                 {
+                    if (current.more == null)
+                    {
+                        current.more = new TreeElement(item);
+                        current.more.prev = current;
+                        this.Count++;
+                        return true;
+                    }
                     current = current.more;
                 }
-                else if (comparer.Compare(current.data, item) == 0)
-                {
-                    return false;
-                }
             }
-
-            current = new TreeElement(item);
-            return true;
         }
 
         void ICollection<T>.Add(T item)
@@ -122,29 +132,6 @@ namespace HW9T1
         }
 
         /// <summary>
-        /// Fills input with collection elements.
-        /// </summary>
-        /// <param name="array">Input array which we would like to fill.</param>
-        /// <param name="position">Current position.</param>
-        /// <param name="current">Current tree element.</param>
-        private void FillTheArray(T[] array, ref int position, TreeElement current)
-        {
-            if (current == null)
-            {
-                return;
-            }
-            FillTheArray(array, ref position, current.less);
-            if (position >= array.Length)
-            {
-                throw new ArgumentOutOfRangeException();
-            }
-
-            array[position] = current.data;
-            position++;
-            FillTheArray(array, ref position, current.more);
-        }
-
-        /// <summary>
         /// Copies all elements of the collection to an array. 
         /// </summary>
         public void CopyTo(T[] array, int position)
@@ -154,8 +141,84 @@ namespace HW9T1
                 throw new ArgumentException();
             }
 
+            foreach (var element in this)
+            {
+                if (position >= array.Length || position < 0)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+                array[position] = element;
+                position++;
+            }
+        }
+
+        /// <summary>
+        /// Get tree element from the set by data.
+        /// </summary>
+        /// <param name="data">Input data.</param>
+        private TreeElement GetElement(T data)
+        {
             var current = this.root;
-            FillTheArray(array, ref position, current);
+
+            while (current != null)
+            {
+                if (comparer.Compare(current.data, data) < 0)
+                {
+                    current = current.more;
+                }
+                else if (comparer.Compare(current.data, data) > 0)
+                {
+                    current = current.less;
+                }
+                else
+                {
+                    return current;
+                }
+            }
+
+            return current;
+        }
+
+        /// <summary>
+        /// Set new child for current tree element.
+        /// </summary>
+        /// <param name="current">Current tree element.</param>
+        private void SetChild(TreeElement current, TreeElement oldChild, TreeElement newChild)
+        {
+            if (newChild != null)
+            {
+                newChild.prev = current;
+            }
+            if (current.more == oldChild)
+            {
+                current.more = newChild;
+            }
+            if (current.less == oldChild)
+            {
+                current.less = newChild;
+            }
+        }
+
+        /// <summary>
+        /// This method finds the smallest element in the right subtree.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        private TreeElement FindTheSmallestInRightSubTree(TreeElement element)
+        {
+            if (element == null || element.more == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            var current = element.more;
+
+            while (current.less != null)
+            {
+                current = current.less;
+            }
+
+            return current;
         }
 
         /// <summary>
@@ -165,66 +228,61 @@ namespace HW9T1
         /// <returns>True is deletion is succesful and false in the other case.</returns>
         public bool Remove(T item)
         {
-            TreeElement parent = null;
-            var current = this.root;
+            try
+            {
+                var element = GetElement(item);
 
-            if (!Contains(item))
+                if (element == root)
+                {
+                    if (element.IsLeaf())
+                    {
+                        this.root = null;
+                        this.Count--;
+                        return true;
+                    }
+                    if (element.less != null && element.more == null)
+                    {
+                        this.root = element.less;
+                        this.Count--;
+                        return true;
+                    }
+                    if (element.more != null && element.less == null)
+                    {
+                        this.root = element.more;
+                        this.root.prev = null;
+                        this.Count--;
+                        return true;
+                    }
+                }
+
+                if (element.IsLeaf())
+                {
+                    SetChild(element.prev, element, null);
+                    Count--;
+                    return true;
+                }
+                if (element.less != null && element.more == null)
+                {
+                    SetChild(element.prev, element, element.less);
+                    Count--;
+                    return true;
+                }
+                if (element.more != null && element.less == null)
+                {
+                    SetChild(element.prev, element, element.more);
+                    Count--;
+                    return true;
+                }
+
+                var buffer = FindTheSmallestInRightSubTree(element).data;
+                Remove(buffer);
+                element.data = buffer;
+                return true;
+            }
+            catch (ArgumentException)
             {
                 return false;
             }
-
-            this.Count--;
-
-            while (comparer.Compare(current.data, item) != 0)
-            {
-                parent = current;
-                if (comparer.Compare(current.data, item) < 0)
-                {
-                    current = current.more;
-                }
-                else if (comparer.Compare(current.data, item) > 0)
-                {
-                    current = current.less;
-                }
-            }
-
-            if (current.IsLeaf())
-            {
-                current = null;
-                return true;
-            }
-            
-            if (current.more != null) 
-            {
-                var elementForDeletion = current;
-                current = current.more;
-                
-                while (current.less != null)
-                {
-                    current = current.less;
-                }
-                elementForDeletion = current;
-                current = current.more;
-                return true;
-            }
-
-            
-            if (current.less != null)
-            {
-                var elementForDeletion = current;
-                current = current.less;
-
-                while (current.more != null)
-                {
-                    current = current.more;
-                }
-
-                elementForDeletion = current;
-                current = current.less;
-                return true;
-            }
-
-            return true;
         }
 
         /// <summary>
@@ -268,7 +326,7 @@ namespace HW9T1
         }
 
         /// <summary>
-        /// Check that current set is a subset of the input collection.
+        /// Check that current set is a proper subset of the input collection.
         /// </summary>
         /// <param name="collection"></param>
         /// <returns></returns>
@@ -280,23 +338,84 @@ namespace HW9T1
             }
 
             foreach (var element in this)
+            {
+                if (!collection.Contains(element))
+                    {
+                    return false;
+                }
+            }
+
+            foreach (var element in collection)
+            {
+                if (!this.Contains(element))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
         
         /// <summary>
-        /// Compares current set to the input collection.
+        /// Checks that current set is a subset of the input collection. 
         /// </summary>
-        /// <param name="collection">Input collection that we would like 
-        /// to compare with the current set.</param>
-        public bool SetEquals(ICollection<T> collection)
+        public bool IsSubsetOf(IEnumerable<T> collection)
         {
             if (collection == null)
             {
                 throw new ArgumentNullException();
             }
 
-            if (this.Count != collection.Count)
+            foreach (var element in this)
             {
-                return false;
+                if (!collection.Contains(element))
+                {
+                    return false;
+                }
+            }
+
+
+            return true;
+        }
+
+        /// <summary>
+        /// Check that current set is a proper superset of the input collection.
+        /// </summary>
+        /// <param name="collection">Input collection.</param>
+        public bool IsProperSupersetOf(IEnumerable<T> collection)
+        {
+            if (collection == null)
+            {
+                throw new ArithmeticException();
+            }
+
+            foreach (var element in collection)
+            {
+                if (!this.Contains(element))
+                {
+                    return false;
+                }
+            }
+
+            foreach (var element in this)
+            {
+                if (!collection.Contains(element))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Check that current set is a superset of the input collection.
+        /// </summary>
+        /// <param name="collection">Input collection.</param>
+        public bool IsSupersetOf(IEnumerable<T> collection)
+        {
+            if (collection == null)
+            {
+                throw new ArgumentNullException();
             }
 
             foreach (var element in collection)
@@ -311,9 +430,66 @@ namespace HW9T1
         }
 
         /// <summary>
+        /// Compares current set to the input collection.
+        /// </summary>
+        /// <param name="collection">Input collection that we would like 
+        /// to compare with the current set.</param>
+        public bool SetEquals(IEnumerable<T> collection)
+        {
+            return this.IsSubsetOf(collection) && this.IsSupersetOf(collection);
+        }
+
+        /// <summary>
+        /// Checks that current set and input collection intersect.
+        /// </summary>
+        /// <param name="collection">Input collection.</param>
+        public bool Overlaps(IEnumerable<T> collection)
+        {
+            if (collection == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            foreach (var element in collection)
+            {
+                if (this.Contains(element))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Transforms the current set so that it only contains the elements,
+        /// which are either contained in the set or only in the collection.
+        /// </summary>
+        /// <param name="collection"></param>
+        public void SymmetricExceptWith(IEnumerable<T> collection)
+        {
+            if (collection == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            foreach (var element in collection)
+            {
+                if (!this.Contains(element))
+                {
+                    this.Add(element);
+                }
+                else
+                {
+                    this.Remove(element);
+                }
+            }
+        }
+
+        /// <summary>
         /// Concatinates the current set and input collection.
         /// </summary>
-        public void UnionWith(ICollection<T> collection)
+        public void UnionWith(IEnumerable<T> collection)
         {
             if (collection == null)
             {
@@ -328,5 +504,42 @@ namespace HW9T1
                 }
             }
         }
+        
+        /// <summary>
+        /// Get enumerator from the current set.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerator<T> GetEnumerator()
+        {
+            if (this.root == null)
+            {
+                yield break;
+            }
+
+            var stack = new Stack<TreeElement>();
+            stack.Push(root);
+
+            while (stack.Count != 0)
+            {
+                var current = stack.Pop();
+
+                if (current.less != null)
+                {
+                    stack.Push(current.less);
+                }
+
+                if (current.more != null)
+                {
+                    stack.Push(current.more);
+                }
+
+                yield return current.data;
+            }
+        }
+
+        /// <summary>
+        /// Get enumerator form the current set.
+        /// </summary>
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }
