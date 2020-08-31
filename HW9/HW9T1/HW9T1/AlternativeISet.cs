@@ -20,6 +20,9 @@ namespace HW9T1
             this.comparer = comparer;
         }
 
+        /// <summary>
+        /// Tree element.
+        /// </summary>
         private class TreeElement
         {
             public TreeElement(T data)
@@ -222,10 +225,9 @@ namespace HW9T1
         }
 
         /// <summary>
-        /// Delete elment from the set.
+        /// Delete element from the set.
         /// </summary>
         /// <param name="item">Input elment that we would like to delete.</param>
-        /// <returns>True is deletion is succesful and false in the other case.</returns>
         public bool Remove(T item)
         {
             try
