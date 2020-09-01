@@ -12,7 +12,7 @@ namespace HW6T2
     {
         private char[,] map;
 
-        private (int X, int Y) PositionOfCharacter;
+        private (int X, int Y) positionOfCharacter;
 
         public Map(string fileName)
         {
@@ -25,14 +25,14 @@ namespace HW6T2
         /// </summary>
         /// <returns>Position of character X</returns>
         public int GetCharacterCoordinateX()
-            => PositionOfCharacter.X;
+            => positionOfCharacter.X;
 
         /// <summary>
         /// Get character coordinate Y
         /// </summary>
         /// <returns>Position of character Y</returns>
         public int GetCharacterCoordinateY()
-            => PositionOfCharacter.Y;
+            => positionOfCharacter.Y;
 
         /// <summary>
         /// Load data from file and parse it to two-dimensional array.
@@ -95,8 +95,8 @@ namespace HW6T2
         {
             if (this.IsAbleToMove(moveX, moveY))
             {
-                PositionOfCharacter.X += moveX;
-                PositionOfCharacter.Y += moveY;
+                positionOfCharacter.X += moveX;
+                positionOfCharacter.Y += moveY;
             }
         }
 
@@ -109,7 +109,7 @@ namespace HW6T2
             {
                 for (int jiter = 0; jiter < map.GetLength(1); jiter++)
                 {
-                    if (iter == PositionOfCharacter.Y && jiter == PositionOfCharacter.X)
+                    if (iter == positionOfCharacter.Y && jiter == positionOfCharacter.X)
                     {
                         Console.Write('@');
                     }
@@ -133,7 +133,7 @@ namespace HW6T2
                 {
                     if (map[iter, jiter] == ' ')
                     {
-                        PositionOfCharacter = (jiter, iter);
+                        positionOfCharacter = (jiter, iter);
                         return;
                     }
                 }
@@ -150,11 +150,11 @@ namespace HW6T2
         /// <returns></returns>
         public bool IsAbleToMove(int moveX, int moveY)
         {
-            if (PositionOfCharacter.X + moveX > -1 &&
-                PositionOfCharacter.X + moveX < map.GetLength(1) &&
-                PositionOfCharacter.Y + moveY > -1 &&
-                PositionOfCharacter.Y + moveY < map.GetLength(0) &&
-                map[PositionOfCharacter.Y + moveY, PositionOfCharacter.X + moveX] == ' ')
+            if (positionOfCharacter.X + moveX > -1 &&
+                positionOfCharacter.X + moveX < map.GetLength(1) &&
+                positionOfCharacter.Y + moveY > -1 &&
+                positionOfCharacter.Y + moveY < map.GetLength(0) &&
+                map[positionOfCharacter.Y + moveY, positionOfCharacter.X + moveX] == ' ')
             {
                 return true;
             }

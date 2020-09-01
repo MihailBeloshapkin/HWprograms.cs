@@ -5,7 +5,7 @@ using System.Text;
 namespace HW6T2
 {
     /// <summary>
-    /// Game.
+    /// This class contains game components(text map and motion methods).
     /// </summary>
     public class Game
     {
@@ -14,7 +14,6 @@ namespace HW6T2
         /// <summary>
         /// Create map objects.
         /// </summary>
-        /// <param name="fileName"></param>
         public Game(string fileName)
         {
             Map = new Map(fileName);
