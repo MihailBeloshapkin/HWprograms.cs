@@ -8,7 +8,7 @@ namespace HW6T2
     /// <summary>
     /// This class contains map and its elements.
     /// </summary>
-    class Map
+    public class Map
     {
         private char[,] map;
 
@@ -93,8 +93,11 @@ namespace HW6T2
         /// <param name="moveY">Move by Y firection.</param>
         public void MoveTheCharacter(int moveX, int moveY)
         {
-            PositionOfCharacter.X += moveX;
-            PositionOfCharacter.Y += moveY;
+            if (this.IsAbleToMove(moveX, moveY))
+            {
+                PositionOfCharacter.X += moveX;
+                PositionOfCharacter.Y += moveY;
+            }
         }
 
         /// <summary>
