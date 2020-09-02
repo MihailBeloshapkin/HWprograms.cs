@@ -186,7 +186,6 @@ namespace HW9T1
         /// This method finds the smallest element in the right subtree.
         /// </summary>
         /// <param name="element"></param>
-        /// <returns></returns>
         private TreeElement FindTheSmallestInRightSubTree(TreeElement element)
         {
             if (element == null || element.More == null)
@@ -315,7 +314,6 @@ namespace HW9T1
         /// Check that current set is a proper subset of the input collection.
         /// </summary>
         /// <param name="collection"></param>
-        /// <returns></returns>
         public bool IsProperSubsetOf(IEnumerable<T> collection)
         {
             if (collection == null)
@@ -450,7 +448,6 @@ namespace HW9T1
         /// Transforms the current set so that it only contains the elements,
         /// which are either contained in the set or only in the collection.
         /// </summary>
-        /// <param name="collection"></param>
         public void SymmetricExceptWith(IEnumerable<T> collection)
         {
             if (collection == null)
@@ -493,7 +490,6 @@ namespace HW9T1
         /// <summary>
         /// Get enumerator from the current set.
         /// </summary>
-        /// <returns></returns>
         public IEnumerator<T> GetEnumerator()
         {
             if (this.root == null)
