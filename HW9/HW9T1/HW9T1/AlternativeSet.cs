@@ -8,17 +8,15 @@ using System.Text.RegularExpressions;
 
 namespace HW9T1
 {
-    public class AlternativeISet<T> : ISet<T>
+    public class AlternativeSet<T> : ISet<T>
     {
         private IComparer<T> comparer;
 
         /// <summary>
         /// Alternative set constructor.
         /// </summary>
-        public AlternativeISet(IComparer<T> comparer)
-        {
-            this.comparer = comparer;
-        }
+        public AlternativeSet(IComparer<T> comparer)
+            => this.comparer = comparer;
 
         /// <summary>
         /// Tree element.
@@ -30,26 +28,25 @@ namespace HW9T1
                 this.data = data;
             }
 
-            public T data;
-            public TreeElement less { get; set; }
-            public TreeElement more { get; set; }
-            public TreeElement prev { get; set; }
+            public T data { get; set; }
+            public TreeElement Less { get; set; }
+            public TreeElement More { get; set; }
+            public TreeElement Prev { get; set; }
 
             public bool IsLeaf()
-                => less == null && more == null;
+                => Less == null && More == null;
         }
 
         private TreeElement root;
 
         public int Count { get; set; } = 0;
 
-        public bool IsReadOnly { get; set; }
+        public bool IsReadOnly { get; set; } = false;
 
         /// <summary>
         /// Add data in the set.
         /// </summary>
         /// <param name="item">Input data that we would like to add.</param>
-        /// <returns></returns>
         public bool Add(T item)
         {
             if (this.Contains(item))
@@ -70,25 +67,25 @@ namespace HW9T1
             {
                 if (comparer.Compare(current.data, item) > 0)
                 {
-                    if (current.less == null)
+                    if (current.Less == null)
                     {
-                        current.less = new TreeElement(item);
-                        current.less.prev = current;
+                        current.Less = new TreeElement(item);
+                        current.Less.Prev = current;
                         this.Count++;
                         return true;
                     }
-                    current = current.less;
+                    current = current.Less;
                 }
                 else if (comparer.Compare(current.data, item) < 0)
                 {
-                    if (current.more == null)
+                    if (current.More == null)
                     {
-                        current.more = new TreeElement(item);
-                        current.more.prev = current;
+                        current.More = new TreeElement(item);
+                        current.More.Prev = current;
                         this.Count++;
                         return true;
                     }
-                    current = current.more;
+                    current = current.More;
                 }
             }
         }
@@ -113,25 +110,7 @@ namespace HW9T1
         /// <param name="item">Input item that we would like to check</param>
         public bool Contains(T item)
         {
-            var current = root;
-
-            while (current != null)
-            {
-                if (comparer.Compare(current.data, item) == 0)
-                {
-                    return true;
-                }
-                else if (comparer.Compare(current.data, item) > 0)
-                {
-                    current = current.less;
-                }
-                else if (comparer.Compare(current.data, item) < 0)
-                {
-                    current = current.more;
-                }
-            }
-
-            return false;
+            return this.GetElement(item) != null;
         }
 
         /// <summary>
@@ -141,15 +120,16 @@ namespace HW9T1
         {
             if (array == null)
             {
-                throw new ArgumentException();
+                throw new ArgumentNullException(nameof(array));
+            }
+            
+            if (position + this.Count >= array.Length + 1 || position < 0)
+            {
+                throw new ArgumentOutOfRangeException();
             }
 
             foreach (var element in this)
             {
-                if (position >= array.Length || position < 0)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
                 array[position] = element;
                 position++;
             }
@@ -167,11 +147,11 @@ namespace HW9T1
             {
                 if (comparer.Compare(current.data, data) < 0)
                 {
-                    current = current.more;
+                    current = current.More;
                 }
                 else if (comparer.Compare(current.data, data) > 0)
                 {
-                    current = current.less;
+                    current = current.Less;
                 }
                 else
                 {
@@ -190,15 +170,15 @@ namespace HW9T1
         {
             if (newChild != null)
             {
-                newChild.prev = current;
+                newChild.Prev = current;
             }
-            if (current.more == oldChild)
+            if (current.More == oldChild)
             {
-                current.more = newChild;
+                current.More = newChild;
             }
-            if (current.less == oldChild)
+            if (current.Less == oldChild)
             {
-                current.less = newChild;
+                current.Less = newChild;
             }
         }
 
@@ -209,16 +189,16 @@ namespace HW9T1
         /// <returns></returns>
         private TreeElement FindTheSmallestInRightSubTree(TreeElement element)
         {
-            if (element == null || element.more == null)
+            if (element == null || element.More == null)
             {
                 throw new ArgumentNullException();
             }
 
-            var current = element.more;
+            var current = element.More;
 
-            while (current.less != null)
+            while (current.Less != null)
             {
-                current = current.less;
+                current = current.Less;
             }
 
             return current;
@@ -230,61 +210,59 @@ namespace HW9T1
         /// <param name="item">Input elment that we would like to delete.</param>
         public bool Remove(T item)
         {
-            try
-            {
-                var element = GetElement(item);
-
-                if (element == root)
-                {
-                    if (element.IsLeaf())
-                    {
-                        this.root = null;
-                        this.Count--;
-                        return true;
-                    }
-                    if (element.less != null && element.more == null)
-                    {
-                        this.root = element.less;
-                        this.Count--;
-                        return true;
-                    }
-                    if (element.more != null && element.less == null)
-                    {
-                        this.root = element.more;
-                        this.root.prev = null;
-                        this.Count--;
-                        return true;
-                    }
-                }
-
-                if (element.IsLeaf())
-                {
-                    SetChild(element.prev, element, null);
-                    Count--;
-                    return true;
-                }
-                if (element.less != null && element.more == null)
-                {
-                    SetChild(element.prev, element, element.less);
-                    Count--;
-                    return true;
-                }
-                if (element.more != null && element.less == null)
-                {
-                    SetChild(element.prev, element, element.more);
-                    Count--;
-                    return true;
-                }
-
-                var buffer = FindTheSmallestInRightSubTree(element).data;
-                Remove(buffer);
-                element.data = buffer;
-                return true;
-            }
-            catch (ArgumentException)
+            var element = GetElement(item);
+            
+            if (element == null)
             {
                 return false;
             }
+
+            if (element == root)
+            {
+                if (element.IsLeaf())
+                {
+                    this.root = null;
+                    this.Count--;
+                    return true;
+                }
+                if (element.Less != null && element.More == null)
+                {
+                    this.root = element.Less;
+                    this.Count--;
+                    return true;
+                }
+                if (element.More != null && element.Less == null)
+                {
+                    this.root = element.More;
+                    this.root.Prev = null;
+                    this.Count--;
+                    return true;
+                }
+            }
+            
+            if (element.IsLeaf())
+            {
+                SetChild(element.Prev, element, null);
+                Count--;
+                return true;
+            }
+            if (element.Less != null && element.More == null)
+            {
+                SetChild(element.Prev, element, element.Less);
+                Count--;
+                return true;
+            }
+            if (element.More != null && element.Less == null)
+            {
+                SetChild(element.Prev, element, element.More);
+                Count--;
+                return true;
+            }
+            
+            var buffer = FindTheSmallestInRightSubTree(element).data;
+            Remove(buffer);
+            element.data = buffer;
+            return true;
         }
 
         /// <summary>
@@ -297,11 +275,17 @@ namespace HW9T1
                 throw new ArgumentNullException();
             }
 
+            if (this.SetEquals(collection))
+            {
+                root = null;
+                return;
+            }
+
             foreach (var element in collection)
             {
                 if (element == null)
                 {
-                    throw new ArgumentNullException();
+                    throw new ArgumentException();
                 }
 
                 Remove(element);
@@ -342,7 +326,7 @@ namespace HW9T1
             foreach (var element in this)
             {
                 if (!collection.Contains(element))
-                    {
+                {
                     return false;
                 }
             }
@@ -376,7 +360,6 @@ namespace HW9T1
                 }
             }
 
-
             return true;
         }
 
@@ -388,7 +371,7 @@ namespace HW9T1
         {
             if (collection == null)
             {
-                throw new ArithmeticException();
+                throw new ArgumentNullException();
             }
 
             foreach (var element in collection)
@@ -525,14 +508,14 @@ namespace HW9T1
             {
                 var current = stack.Pop();
 
-                if (current.less != null)
+                if (current.Less != null)
                 {
-                    stack.Push(current.less);
+                    stack.Push(current.Less);
                 }
 
-                if (current.more != null)
+                if (current.More != null)
                 {
-                    stack.Push(current.more);
+                    stack.Push(current.More);
                 }
 
                 yield return current.data;
