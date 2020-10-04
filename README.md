@@ -1,1 +1,1 @@
-This repository has already been finished
+This repository has been already finished
